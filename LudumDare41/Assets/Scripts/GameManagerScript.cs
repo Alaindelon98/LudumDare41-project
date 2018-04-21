@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public static int PlayerMoney;
+    public static playerScript player;
     public float sumMoneyDistance;
     public static float sumMoneyDistance_s;
     public static float playerDistanceCounter, totalPlayerDistance;
