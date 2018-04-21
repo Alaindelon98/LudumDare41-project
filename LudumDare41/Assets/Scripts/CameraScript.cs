@@ -27,14 +27,13 @@ public class CameraScript : MonoBehaviour {
 			lockOnPlayer = true;
 		}
 
-
 		if (!lockOnPlayer) {
 			Vector2 mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 
-<<<<<<< HEAD
+
 			float left = Screen.width * 0.2f;
 			float right = Screen.width - (Screen.width * 0.2f);
-=======
+
             if (mousePosition.x < left || mousePosition.x > right)
             {
                 cameraDragging = true;
@@ -42,7 +41,6 @@ public class CameraScript : MonoBehaviour {
                
             }
            
->>>>>>> 7ff72449a844adb322850c0132e325bc44a69ddb
 
 			if (mousePosition.x < left) {
 				cameraDragging = true;
@@ -59,7 +57,7 @@ public class CameraScript : MonoBehaviour {
 					return;
 				}
 
-<<<<<<< HEAD
+
 				if (!Input.GetMouseButton (0))
 					return;
 
@@ -80,7 +78,7 @@ public class CameraScript : MonoBehaviour {
 
 		else {
 			this.transform.position = new Vector3 (GameManagerScript.player.transform.position.x, GameManagerScript.player.transform.position.y, -10f);
-=======
+
             if (cameraDragging)
             {
        
@@ -94,8 +92,8 @@ public class CameraScript : MonoBehaviour {
 
                 Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
                 Vector3 move = new Vector3(pos.x * actualDragSpeed, 0, 0);
->>>>>>> 7ff72449a844adb322850c0132e325bc44a69ddb
 
 		}
     }
+}
 }
