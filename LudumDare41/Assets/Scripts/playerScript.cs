@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour {
 
-	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease;
+	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease, fallMultiplier, lowJumpMultiplier;
 
 	private float speed;
 	private Rigidbody2D myRb;
@@ -15,21 +15,34 @@ public class playerScript : MonoBehaviour {
 	{
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
-	}
+
+      
+    }
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		Move ();
 
-		/*if (Input.GetKeyDown("space"))
+        /*if (Input.GetKeyDown("space"))
 		{
 			Jump();
 		}*/
 
-		/*Sprint ();
+        /*Sprint ();
 		print (speed);*/
-		if (speed > initialSpeed) {
+
+        if (myRb.velocity.y < 0)
+        {
+            myRb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+
+        else if (myRb.velocity.y > 0)
+        {
+            myRb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
+        if (speed > initialSpeed) {
 			speed -= speedDecrease * Time.deltaTime;
 		}
 	}
