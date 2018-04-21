@@ -6,13 +6,16 @@ public class playerScript : MonoBehaviour {
 
 	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease, fallMultiplier, lowJumpMultiplier;
 
+    private Vector3 spawnPosition;
+    private bool grounded;
 	private float speed;
-	private Rigidbody2D myRb;
+	public Rigidbody2D myRb;
 
 
 	// Use this for initialization
 	void Start () 
 	{
+        spawnPosition = transform.position;
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
 
@@ -53,7 +56,8 @@ public class playerScript : MonoBehaviour {
 		
 	void Jump()
 	{
-		myRb.velocity = Vector2.up*jumpVelocity;
+		myRb.velocity =new Vector2(speed*4,jumpVelocity);
+        
 	}
 
 	void Sprint()
@@ -64,6 +68,11 @@ public class playerScript : MonoBehaviour {
 
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
 	}
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        grounded = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
