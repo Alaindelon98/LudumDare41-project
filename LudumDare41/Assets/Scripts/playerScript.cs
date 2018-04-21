@@ -6,7 +6,7 @@ public class playerScript : MonoBehaviour {
 
 	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease, fallMultiplier, lowJumpMultiplier;
 
-    private Vector3 spawnPosition;
+    public Vector3 spawnPosition;
     private bool grounded;
 	private float speed;
 	public Rigidbody2D myRb;
@@ -69,7 +69,7 @@ public class playerScript : MonoBehaviour {
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
 	}
 
-<<<<<<< HEAD
+
 	void Crouch()
 	{
 		
@@ -84,13 +84,15 @@ public class playerScript : MonoBehaviour {
 	{
 		
 	}
-=======
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         grounded = true;
+
+
     }
 
->>>>>>> 98f6f3aba18c0609e62b3c2563aa1d5698b0cbc4
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)

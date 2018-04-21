@@ -21,19 +21,25 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        GetPlayerDistance();
     }
 
-    public static void GetPlayerDistance(float newDistance)
+    public static void GetPlayerDistance()
     {
+        Debug.Log(sumMoneyDistance_s);
+        Debug.Log(""+totalPlayerDistance);
+
+        float newDistance = player.transform.position.x;
+
         if (totalPlayerDistance < newDistance)
         {
-            playerDistanceCounter += totalPlayerDistance - newDistance;
-            totalPlayerDistance += totalPlayerDistance - newDistance;
+            playerDistanceCounter += newDistance - totalPlayerDistance;
+            totalPlayerDistance += newDistance - totalPlayerDistance;
 
             if (playerDistanceCounter >= sumMoneyDistance_s)
             {
                 PlayerMoney++;
+                Debug.Log(PlayerMoney);
                 playerDistanceCounter = 0;
             }
         }
@@ -45,4 +51,15 @@ public class GameManagerScript : MonoBehaviour
 		player = _player;
 		enemies = _enemies;
 	}
+    public static void PlayerDeath()
+    {
+        playerDistanceCounter = 0;
+        totalPlayerDistance = 0;
+
+    }
+    public void RespawnPlayer()
+    {
+        player.transform.position = player.spawnPosition;
+        player.gameObject.SetActive(true);
+    }
 }
