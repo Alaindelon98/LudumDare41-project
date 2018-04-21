@@ -61,7 +61,7 @@ public class GameManagerScript : MonoBehaviour
 
         float newDistance =  Mathf.Abs(player.transform.position.x- player.spawnPosition.x);
 
-        Debug.Log("NewDistance: " + newDistance);
+    
 
         if (totalPlayerDistance < newDistance)
         {
@@ -71,7 +71,7 @@ public class GameManagerScript : MonoBehaviour
             if (playerDistanceCounter >= sumMoneyDistance_s)
             {
                 PlayerMoney++;
-                //Debug.Log("ActualMoney "+PlayerMoney);
+                Debug.Log("ActualMoney " + PlayerMoney);
                 playerDistanceCounter = 0;
             }
         }
@@ -94,6 +94,10 @@ public class GameManagerScript : MonoBehaviour
     }
     public void RespawnPlayer()
     {
+        foreach(enemyScript e in enemies)
+        {
+            e.ResetEnemy();
+        }
         
         player.gameObject.SetActive(true);
         

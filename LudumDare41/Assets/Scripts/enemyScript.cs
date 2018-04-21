@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyScript : MonoBehaviour {
+public class enemyScript : MonoBehaviour
+{
 
 
 	public float speed;
-	private int direction=1;
+    private Vector3 originalPos;
+	public int direction=1;
+    private int originalDirection;
 
 	// Use this for initialization
 	void Start () {
 		this.enabled = false;
+        originalPos = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -21,14 +25,7 @@ public class enemyScript : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.gameObject.tag == "Right")
-		{
-			direction = -Mathf.Abs(direction);
-		}
-		if (col.gameObject.tag == "Left")
-		{
-			direction = Mathf.Abs(direction);
-		}
+        direction *= -1;
 	}
 
 	private void Mov()
@@ -36,4 +33,10 @@ public class enemyScript : MonoBehaviour {
 		transform.position += new Vector3 (direction*speed*Time.deltaTime,0,0);
 		//saltito 
 	}
+    public void ResetEnemy()
+    {
+        direction = originalDirection;
+        transform.position = originalPos;
+    }
+
 }
