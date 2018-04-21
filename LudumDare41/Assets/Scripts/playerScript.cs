@@ -28,7 +28,10 @@ public class playerScript : MonoBehaviour {
 		}
 
 		Sprint ();
-
+		print (speed);
+		if (speed > initialSpeed) {
+			speed--;
+		}
 	}
 	void Mov()
 	{
@@ -42,6 +45,10 @@ public class playerScript : MonoBehaviour {
 
 	void Sprint()
 	{
+		if (speed <= maxSpeed && Input.GetKey(KeyCode.D)) {
+			speed = maxSpeed;
+		} 
 
+		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
 	}
 }
