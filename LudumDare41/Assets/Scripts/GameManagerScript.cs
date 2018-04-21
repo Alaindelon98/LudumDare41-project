@@ -8,9 +8,13 @@ public class GameManagerScript : MonoBehaviour
     public static playerScript player;
 	public static List<enemyScript> enemies;
     public float sumMoneyDistance;
+    public int RespawnTime;
     public static float sumMoneyDistance_s;
     public static float playerDistanceCounter, totalPlayerDistance;
 
+
+    public enum GameState {Dead,OnRun };
+    public static GameState actualGameState;
 
     // Use this for initialization
     void Start()
@@ -21,18 +25,43 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetPlayerDistance();
+        switch (actualGameState)
+        {
+            case GameState.Dead:
+
+                Invoke("RespawnPlayer", RespawnTime);
+                ChangePlayerState(GameState.OnRun);
+
+                break;
+            case GameState.OnRun:
+
+                GetPlayerDistance();
+
+                break;
+        }
+       
+    }
+    public static void ChangePlayerState(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.Dead:
+                break;
+            case GameState.OnRun:
+                break;
+        }
+        actualGameState = newState;
     }
 
     public static void GetPlayerDistance()
     {
-        Debug.Log("StandardDistance "+sumMoneyDistance_s+ " //  DistanceCounter: " + playerDistanceCounter);
-        Debug.Log("TotalDistance "+totalPlayerDistance);
+        //Debug.Log("StandardDistance "+sumMoneyDistance_s+ " //  DistanceCounter: " + playerDistanceCounter);
+        //Debug.Log("TotalDistance "+totalPlayerDistance);
 
 
-        float newDistance = player.transform.position.x;
+        float newDistance =  Mathf.Abs(player.transform.position.x- player.spawnPosition.x);
 
-        Debug.Log("NewDistance: "+newDistance);
+        Debug.Log("NewDistance: " + newDistance);
 
         if (totalPlayerDistance < newDistance)
         {
@@ -42,7 +71,7 @@ public class GameManagerScript : MonoBehaviour
             if (playerDistanceCounter >= sumMoneyDistance_s)
             {
                 PlayerMoney++;
-                Debug.Log("Actiañ"+PlayerMoney);
+                //Debug.Log("ActualMoney "+PlayerMoney);
                 playerDistanceCounter = 0;
             }
         }
@@ -58,11 +87,15 @@ public class GameManagerScript : MonoBehaviour
     {
         playerDistanceCounter = 0;
         totalPlayerDistance = 0;
+        player.transform.position = player.spawnPosition;
+        ChangePlayerState(GameState.Dead);
+
 
     }
     public void RespawnPlayer()
     {
-        player.transform.position = player.spawnPosition;
+        
         player.gameObject.SetActive(true);
+        
     }
 }
