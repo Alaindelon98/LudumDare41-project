@@ -7,7 +7,7 @@ public class EnemiesManager : MonoBehaviour {
 	//public GameObject player;
 	public float distanceMax;
 	private List<enemyScript> enemies;
-	private Vector3 distanceVec;
+
 	private float distance;
 
 
@@ -20,15 +20,15 @@ public class EnemiesManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		ActivateEnemies ();
+		//ActivateEnemies ();
 	}
 
 	void ActivateEnemies()
 	{
 		foreach (enemyScript item in enemies) {
-			distanceVec = GameManagerScript.player.transform.position - item.gameObject.transform.position;
+            distance = GameManagerScript.player.transform.position.x - item.gameObject.transform.position.x;
 			//distanceVec = player.transform.position - item.gameObject.transform.position;
-			distance = distanceVec.magnitude;
+			
 			if (distance <= distanceMax)
 			{
 				item.enabled = true;
