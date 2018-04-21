@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour {
 
-	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease, fallMultiplier, lowJumpMultiplier;
+	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease, fallMultiplier, lowJumpMultiplier, jumpMultiplier;
 
     public Vector3 spawnPosition;
     private bool grounded;
 	private float speed;
-	public Rigidbody2D myRb;
-
+	private Rigidbody2D myRb;
+	private float jumpSpeed;
 
 	// Use this for initialization
 	void Start () 
@@ -18,8 +18,7 @@ public class playerScript : MonoBehaviour {
         spawnPosition = transform.position;
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
-
-      
+		jumpSpeed = jumpMultiplier * speed;
     }
 	
 	// Update is called once per frame
@@ -45,9 +44,13 @@ public class playerScript : MonoBehaviour {
             myRb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-        if (speed > initialSpeed) {
+        if (speed > initialSpeed) 
+		{
 			speed -= speedDecrease * Time.deltaTime;
 		}
+
+
+		print (speed);
 	}
 	void Move()
 	{
@@ -56,7 +59,9 @@ public class playerScript : MonoBehaviour {
 		
 	void Jump()
 	{
-		myRb.velocity =new Vector2(speed*4,jumpVelocity);
+		speed = jumpSpeed;
+		grounded = false;
+		myRb.velocity =new Vector2(speed,jumpVelocity);
         
 	}
 
@@ -68,8 +73,7 @@ public class playerScript : MonoBehaviour {
 
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
 	}
-
-
+		
 	void Crouch()
 	{
 		
@@ -77,19 +81,23 @@ public class playerScript : MonoBehaviour {
 
 	void Change()
 	{
-		//speed = -Mathf.Abs(sp)
+		if (speed > 0) {
+			speed = -Mathf.Abs (speed);
+		}
+		else if (speed < 0) {
+			speed = Mathf.Abs (speed);
+		}
 	}
 
 	void WallJump()
 	{
-		
+		Jump ();
+		Change ();
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         grounded = true;
-
-
     }
 
 
