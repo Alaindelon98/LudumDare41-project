@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224468216573149248}
   - component: {fileID: 222213825120630146}
+  - component: {fileID: 114699824134425506}
   - component: {fileID: 114803308770687588}
   m_Layer: 5
   m_Name: LockCameraButton

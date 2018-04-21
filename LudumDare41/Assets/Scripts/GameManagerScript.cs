@@ -57,9 +57,7 @@ public class GameManagerScript : MonoBehaviour
 
     public static void GetPlayerDistance()
     {
-        //Debug.Log("StandardDistance "+sumMoneyDistance_s+ " //  DistanceCounter: " + playerDistanceCounter);
-        //Debug.Log("TotalDistance "+totalPlayerDistance);
-
+  
 
         float newDistance =  Mathf.Abs(player.transform.position.x- player.spawnPosition.x);
 
