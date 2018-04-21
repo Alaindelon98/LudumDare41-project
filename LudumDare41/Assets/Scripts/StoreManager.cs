@@ -49,9 +49,12 @@ public class StoreManager : MonoBehaviour {
        
             if (levelTiles.GetTile(selectedCellPos) != null)
             {
-                if (true)
+                if (levelTiles.GetTile(new Vector3Int (selectedCellPos.x, selectedCellPos.y + 1, 0)) == null)
+                {
                     canBePlaced = true;
                     ChangeColor("canPlace");
+                }
+                    
             }
 
 
