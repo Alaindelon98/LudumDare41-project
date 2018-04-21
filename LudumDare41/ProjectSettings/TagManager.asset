@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Right
   - Left
+  - Jump
+  - Sprint
+  - Crouch
+  - Change
+  - WallJump
   layers:
   - Default
   - TransparentFX

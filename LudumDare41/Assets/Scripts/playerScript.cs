@@ -65,6 +65,20 @@ public class playerScript : MonoBehaviour {
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
 	}
 
+	void Crouch()
+	{
+		
+	}
+
+	void Change()
+	{
+		//speed = -Mathf.Abs(sp)
+	}
+
+	void WallJump()
+	{
+		
+	}
     private void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
@@ -72,10 +86,19 @@ public class playerScript : MonoBehaviour {
             case "Jump":
                 Jump();
                 break;
-
             case "Sprint":
                 Sprint();
                 break;
+			case "Crouch":
+				Crouch ();
+				break;
+			case "Change":
+				Change ();
+				break;
+			case "WallJump":
+				WallJump ();
+				break;
+			
         }
     }
 }
