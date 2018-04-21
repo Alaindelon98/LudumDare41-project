@@ -8,6 +8,7 @@ public class StoreManager : MonoBehaviour {
 
     public bool placingAction;
     private bool canBePlaced;
+    bool placeableTop, placeableRight, placeableLeft;
 
     public GameObject JumpPrefab;
 
@@ -16,6 +17,7 @@ public class StoreManager : MonoBehaviour {
     private Vector3 mousePos;
 
     private SpriteRenderer newActionRenderer;
+    private BoxCollider2D newActionCollider;
     private GameObject newAction;
 
 	void Start () {
@@ -38,27 +40,42 @@ public class StoreManager : MonoBehaviour {
 
         else if (placingAction && newAction)
         {
+            canBePlaced = false;
+            placeableRight = false;
+            placeableLeft = false;
+            placeableTop = false;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-
 
             Vector3Int mousePosInt = new Vector3Int((int)Mathf.Floor(mousePos.x), (int)Mathf.Floor(mousePos.y), (int)Mathf.Floor(mousePos.z));
 
             Vector3Int selectedCellPos = levelTiles.WorldToCell(mousePosInt);
-            ChangeColor("cannotPlace");
        
             if (levelTiles.GetTile(selectedCellPos) != null)
             {
-                if (levelTiles.GetTile(new Vector3Int (selectedCellPos.x, selectedCellPos.y + 1, 0)) == null)
+                if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
                 {
-                    canBePlaced = true;
-                    ChangeColor("canPlace");
+                    Debug.Log("CAN BE PLACED TOP");
+                    placeableTop = true;
                 }
-                    
+                else if(levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 2, selectedCellPos.y, 0)) == null)
+                {
+                    Debug.Log("CAN BE PLACED RIGHT");
+                    placeableRight = true;
+                }
+                else if(levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 2, selectedCellPos.y, 0)) == null)
+                {
+                    Debug.Log("CAN BE PLACED LEFT");
+                    placeableLeft = true;
+                }
             }
 
-
-            if (levelTiles.GetTile(selectedCellPos) == null)
+            if(placeableTop || placeableRight || placeableLeft)
+            {
+                canBePlaced = true;
+                ChangeColor("canPlace");
+            }
+            else
             {
                 canBePlaced = false;
                 ChangeColor("cannotPlace");
@@ -72,14 +89,15 @@ public class StoreManager : MonoBehaviour {
 
             else
             {
-
+                if(Input.GetButtonDown("Fire1"))
+                {
+                    Debug.Log("Placed action and can be placed: " + canBePlaced);
+                    placingAction = false;
+                    ChangeColor("placed");
+                    newActionCollider.enabled = true;
+                }
                 newAction.transform.position = levelTiles.GetCellCenterWorld(selectedCellPos);
             }
-
-            Debug.Log("Mouse position: " + mousePos);
-            Debug.Log("Mouse pos Int: " + mousePosInt);
-            Debug.Log("World to cell: " + levelTiles.WorldToCell(mousePosInt));
-            Debug.Log("Can place: " + (levelTiles.GetTile(selectedCellPos) != null));
         }
 
 
@@ -122,6 +140,9 @@ public class StoreManager : MonoBehaviour {
     {
         newAction = Instantiate(JumpPrefab, mousePos, Quaternion.identity);
         newActionRenderer = newAction.GetComponent<SpriteRenderer>();
+        newActionCollider = newAction.GetComponent<BoxCollider2D>();
+
+        newActionCollider.enabled = false;
 
        
         canBePlaced = false;
