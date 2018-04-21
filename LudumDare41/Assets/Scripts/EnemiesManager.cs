@@ -6,7 +6,7 @@ public class EnemiesManager : MonoBehaviour {
 
 	//public GameObject player;
 	public float distanceMax;
-	public List<enemyScript> enemies;
+	private List<enemyScript> enemies;
 	private Vector3 distanceVec;
 	private float distance;
 
@@ -14,7 +14,7 @@ public class EnemiesManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		
+		enemies = GameManagerScript.enemies;
 	}
 	
 	// Update is called once per frame

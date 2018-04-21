@@ -6,16 +6,16 @@ public class GameManagerScript : MonoBehaviour
 {
     public static int PlayerMoney;
     public static playerScript player;
+	public static List<enemyScript> enemies;
     public float sumMoneyDistance;
     public static float sumMoneyDistance_s;
     public static float playerDistanceCounter, totalPlayerDistance;
+
 
     // Use this for initialization
     void Start()
     {
         sumMoneyDistance_s = sumMoneyDistance;
-
-
     }
 
     // Update is called once per frame
@@ -23,6 +23,7 @@ public class GameManagerScript : MonoBehaviour
     {
 
     }
+
     public static void GetPlayerDistance(float newDistance)
     {
         if (totalPlayerDistance < newDistance)
@@ -34,9 +35,14 @@ public class GameManagerScript : MonoBehaviour
             {
                 PlayerMoney++;
                 playerDistanceCounter = 0;
-
             }
         }
 
     }
+
+	public static void LoadLevelFunction(playerScript _player, List<enemyScript> _enemies)
+	{
+		player = _player;
+		enemies = _enemies;
+	}
 }
