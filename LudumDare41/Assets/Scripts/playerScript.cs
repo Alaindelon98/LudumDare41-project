@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour {
 
-	public float maxSpeed, initialSpeed;
+	public float maxSpeed, initialSpeed, jumpVelocity;
 
 	private float speed;
 	private Rigidbody2D myRb;
@@ -24,8 +24,10 @@ public class playerScript : MonoBehaviour {
 
 		if (Input.GetKeyDown("space"))
 		{
-			print ("espaciuuu");
+			Jump();
 		}
+
+		Sprint ();
 
 	}
 	void Mov()
@@ -35,7 +37,7 @@ public class playerScript : MonoBehaviour {
 		
 	void Jump()
 	{
-
+		myRb.velocity = Vector2.up*jumpVelocity;
 	}
 
 	void Sprint()
