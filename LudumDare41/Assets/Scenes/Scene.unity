@@ -155,7 +155,7 @@ Prefab:
     - target: {fileID: 114381129515396418, guid: 18502c4a973146f4f9176b38fc0b50dd,
         type: 2}
       propertyPath: jumpVelocity
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 70678248875923294, guid: 18502c4a973146f4f9176b38fc0b50dd,
         type: 2}
@@ -176,6 +176,16 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114381129515396418, guid: 18502c4a973146f4f9176b38fc0b50dd,
+        type: 2}
+      propertyPath: fallMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114381129515396418, guid: 18502c4a973146f4f9176b38fc0b50dd,
+        type: 2}
+      propertyPath: lowJumpMultiplier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18502c4a973146f4f9176b38fc0b50dd, type: 2}
@@ -3020,7 +3030,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 2
-  CameraLimit: 0
   lockOnPlayer: 0
   cameraDragging: 1
   outerLeft: -10

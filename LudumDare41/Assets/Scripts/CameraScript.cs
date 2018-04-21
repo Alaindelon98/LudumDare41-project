@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
     public float dragSpeed = 2;
-    public float CameraLimit;
+    private float actualDragSpeed;
+  
+
     private Vector3 dragOrigin;
     public bool lockOnPlayer = false;
     public bool cameraDragging = true;
@@ -13,7 +15,7 @@ public class CameraScript : MonoBehaviour {
     public float outerRight = 10f;
 
 
-    void Update()
+    void LateUpdate()
     {
 
         if (!lockOnPlayer)
@@ -23,14 +25,13 @@ public class CameraScript : MonoBehaviour {
             float left = Screen.width * 0.2f;
             float right = Screen.width - (Screen.width * 0.2f);
 
-            if (mousePosition.x < left)
+            if (mousePosition.x < left || mousePosition.x > right)
             {
                 cameraDragging = true;
+                actualDragSpeed = dragSpeed;
+               
             }
-            else if (mousePosition.x > right)
-            {
-                cameraDragging = true;
-            }
+           
 
 
 
@@ -39,17 +40,17 @@ public class CameraScript : MonoBehaviour {
 
             if (cameraDragging)
             {
-
+       
                 if (Input.GetMouseButtonDown(0))
                 {
                     dragOrigin = Input.mousePosition;
                     return;
                 }
-
+                Debug.Log(actualDragSpeed);
                 if (!Input.GetMouseButton(0)) return;
 
                 Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
-                Vector3 move = new Vector3(pos.x * dragSpeed, 0, 0);
+                Vector3 move = new Vector3(pos.x * actualDragSpeed, 0, 0);
 
                 if (move.x > 0f)
                 {
