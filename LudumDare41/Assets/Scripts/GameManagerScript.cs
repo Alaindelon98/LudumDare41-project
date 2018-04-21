@@ -26,10 +26,13 @@ public class GameManagerScript : MonoBehaviour
 
     public static void GetPlayerDistance()
     {
-        Debug.Log(sumMoneyDistance_s);
-        Debug.Log(""+totalPlayerDistance);
+        Debug.Log("StandardDistance "+sumMoneyDistance_s+ " //  DistanceCounter: " + playerDistanceCounter);
+        Debug.Log("TotalDistance "+totalPlayerDistance);
+
 
         float newDistance = player.transform.position.x;
+
+        Debug.Log("NewDistance: "+newDistance);
 
         if (totalPlayerDistance < newDistance)
         {
@@ -39,7 +42,7 @@ public class GameManagerScript : MonoBehaviour
             if (playerDistanceCounter >= sumMoneyDistance_s)
             {
                 PlayerMoney++;
-                Debug.Log(PlayerMoney);
+                Debug.Log("Actiañ"+PlayerMoney);
                 playerDistanceCounter = 0;
             }
         }
