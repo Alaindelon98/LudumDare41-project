@@ -12,6 +12,9 @@ public class playerScript : MonoBehaviour {
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
 
+	Animator anim;
+	int jumpToHash = Animator.StringToHash("Jump");
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -19,6 +22,8 @@ public class playerScript : MonoBehaviour {
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
 		jumpSpeed = jumpMultiplier * speed;
+
+		anim = GetComponent<Animator> ();
     }
 	
 	// Update is called once per frame
@@ -60,6 +65,8 @@ public class playerScript : MonoBehaviour {
 		speed = jumpSpeed;
 		grounded = false;
 		myRb.velocity =new Vector2(speed,jumpVelocity);
+
+		//anim.SetTrigger (jumpToHash);
         
 	}
 
