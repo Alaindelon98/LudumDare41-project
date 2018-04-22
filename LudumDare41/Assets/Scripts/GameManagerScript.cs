@@ -9,11 +9,14 @@ public class GameManagerScript : MonoBehaviour
     public static int PlayerMoney, totalRuns;
     public static playerScript player;
     public static List<enemyScript> enemies;
+    public static List<Transform> actions;
     public float sumMoneyDistance;
     public int RespawnTime;
     public static float sumMoneyDistance_s;
     public static float playerDistanceCounter, totalPlayerDistance, totalGamePlayerDistance, moneyLastRun, theseRunMoney;
     public static CameraScript mainCamera;
+
+    public static int initialJumpPrice, initialSprintPrice, initialCrouchPrice, initialReversePrice, wallJumpPrice;
 
 
     public enum GameState { Dead, OnRun };
@@ -24,6 +27,9 @@ public class GameManagerScript : MonoBehaviour
     {
         sumMoneyDistance_s = sumMoneyDistance;
         mainCamera = Camera.main.GetComponent<CameraScript>();
+
+        enemies = new List<enemyScript>();
+        actions = new List<Transform>();
     }
 
     // Update is called once per frame

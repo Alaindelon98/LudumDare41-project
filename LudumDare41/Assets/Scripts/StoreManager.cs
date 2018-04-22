@@ -5,12 +5,10 @@ using UnityEngine.Tilemaps;
 
 public class StoreManager : MonoBehaviour {
 
-
-    public bool placingAction;
     private bool canBePlaced;
     bool placeableTop, placeableRight, placeableLeft;
 
-    public GameObject JumpPrefab;
+    public GameObject JumpPrefab, SprintPrefab, CrouchPrefab, ReversePrefab, WallJumpPrefab;
 
     public Tilemap levelTiles;
 
@@ -19,26 +17,30 @@ public class StoreManager : MonoBehaviour {
     private SpriteRenderer newActionRenderer;
     private BoxCollider2D newActionCollider;
     private GameObject newAction;
+    private string newActionType;
 
-	void Start () {
+    [HideInInspector]
+    public int jumpPrice, sprintPrice, crouchPrice, reversePrice, wallJumpPrice;
+
+    [HideInInspector]
+    public bool placingAction;
+
+
+    void Start () {
         placingAction = false;
         newAction = null;
+
+        jumpPrice = GameManagerScript.initialJumpPrice;
+        sprintPrice = GameManagerScript.initialSprintPrice;
+        crouchPrice = GameManagerScript.initialCrouchPrice;
+        reversePrice = GameManagerScript.initialCrouchPrice;
 	}
 	
 	void Update () {
         //Debug.Log(placingAction);
-		if (!placingAction)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //Debug.Log("Place new Action");
-                NewAction();
-                placingAction = true;
-            }
-           
-        }
+		
 
-        else if (placingAction && newAction)
+        if (placingAction && newAction)
         {
             FindOrPlace();
         }
@@ -46,6 +48,67 @@ public class StoreManager : MonoBehaviour {
 
 
 	}
+
+    public void SelectAction(string type)
+    {
+        switch (type)
+        {
+            case "Jump":
+                if (GameManagerScript.PlayerMoney >= jumpPrice)
+                {
+                    BuyAction(JumpPrefab);
+                    GameManagerScript.PlayerMoney -= jumpPrice;
+                }
+                break;
+
+            case "Sprint":
+                if (GameManagerScript.PlayerMoney >= sprintPrice)
+                {
+                    BuyAction(SprintPrefab);
+                    GameManagerScript.PlayerMoney -= sprintPrice;
+                }
+                break;
+
+            case "Crouch":
+                if (GameManagerScript.PlayerMoney >= crouchPrice)
+                {
+                    BuyAction(CrouchPrefab);
+                    GameManagerScript.PlayerMoney -= crouchPrice;
+                }
+                break;
+
+            case "Reverse":
+                if (GameManagerScript.PlayerMoney >= reversePrice)
+                {
+                    BuyAction(ReversePrefab);
+                    GameManagerScript.PlayerMoney -= reversePrice;
+                }
+                break;
+
+            case "WallJump":
+                if (GameManagerScript.PlayerMoney >= wallJumpPrice)
+                {
+                    BuyAction(WallJumpPrefab);
+                    GameManagerScript.PlayerMoney -= wallJumpPrice;
+                }
+                break;
+        }
+    }
+
+    void BuyAction(GameObject prefab)
+    {
+        if (!placingAction)
+        {
+            newAction = Instantiate(prefab, mousePos, Quaternion.identity);
+            newActionRenderer = newAction.GetComponent<SpriteRenderer>();
+            newActionCollider = newAction.GetComponent<BoxCollider2D>();
+
+            newActionCollider.enabled = false;
+            canBePlaced = false;
+
+            placingAction = true;
+        }
+    }
     void FindOrPlace()
     {
         canBePlaced = false;
@@ -61,27 +124,33 @@ public class StoreManager : MonoBehaviour {
 
         if (levelTiles.GetTile(selectedCellPos) != null)
         {
-            if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
+            if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 2, selectedCellPos.y, 0)) == null)
             {
-                //Debug.Log("CAN BE PLACED TOP");
-                placeableTop = true;
-            }
-            else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 2, selectedCellPos.y, 0)) == null)
-            {
-                //Debug.Log("CAN BE PLACED RIGHT");
                 placeableRight = true;
             }
             else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 2, selectedCellPos.y, 0)) == null)
             {
-                //Debug.Log("CAN BE PLACED LEFT");
                 placeableLeft = true;
+            }
+            else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
+            {
+                placeableTop = true;
             }
         }
 
         if (placeableTop || placeableRight || placeableLeft)
         {
-            canBePlaced = true;
-            ChangeColor("canPlace");
+            if(newActionType != "WallJump" || (newActionType == "WallJump" && !placeableTop))
+            {
+                canBePlaced = true;
+                ChangeColor("canPlace");
+            }
+            else
+            {
+                canBePlaced = false;
+                ChangeColor("cannotPlace");
+            }
+
         }
         else
         {
@@ -97,14 +166,21 @@ public class StoreManager : MonoBehaviour {
 
         else
         {
+            newAction.transform.position = levelTiles.GetCellCenterWorld(selectedCellPos);
+
             if (Input.GetButtonDown("Fire1"))
             {
                 //Debug.Log("Placed action and can be placed: " + canBePlaced);
                 placingAction = false;
                 ChangeColor("placed");
                 newActionCollider.enabled = true;
+
+                GameManagerScript.actions.Add(newAction.transform);
+
+                newAction = null;
+                newActionCollider = null;
+                newActionRenderer = null;
             }
-            newAction.transform.position = levelTiles.GetCellCenterWorld(selectedCellPos);
         }
     }
     void ChangeColor(string type)
@@ -137,17 +213,5 @@ public class StoreManager : MonoBehaviour {
 
         newActionRenderer.color = tmp;
 
-    }
-
-    void NewAction()
-    {
-        newAction = Instantiate(JumpPrefab, mousePos, Quaternion.identity);
-        newActionRenderer = newAction.GetComponent<SpriteRenderer>();
-        newActionCollider = newAction.GetComponent<BoxCollider2D>();
-
-        newActionCollider.enabled = false;
-
-       
-        canBePlaced = false;
     }
 }
