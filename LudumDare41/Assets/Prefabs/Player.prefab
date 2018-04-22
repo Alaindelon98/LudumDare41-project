@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 10
   initialSpeed: 3.5
-  jumpVelocity: 15
+  jumpVelocity: 13
   speedDecrease: 3
   fallMultiplier: 2
   lowJumpMultiplier: 2.5

@@ -49,8 +49,6 @@ public class playerScript : MonoBehaviour {
 			speed -= speedDecrease * Time.deltaTime;
 		}
 
-
-		print (speed);
 	}
 	void Move()
 	{
