@@ -13,8 +13,7 @@ public class playerScript : MonoBehaviour {
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
 
-	Animator anim;
-	int jumpToHash = Animator.StringToHash("Jump");
+	Animator animatorController;
 
 	// Use this for initialization
 	void Start () 
@@ -25,7 +24,8 @@ public class playerScript : MonoBehaviour {
 		speed = initialSpeed;
 		jumpSpeed = jumpMultiplier * speed;
 
-		anim = GetComponent<Animator> ();
+		animatorController = GetComponentInChildren<Animator> ();
+
     }
 	
 	// Update is called once per frame
@@ -60,6 +60,7 @@ public class playerScript : MonoBehaviour {
 	void Move()
 	{
 		myRb.velocity = new Vector2 (directionX* speed, myRb.velocity.y);
+
 	}
 		
 	void Jump()
@@ -68,7 +69,10 @@ public class playerScript : MonoBehaviour {
 		grounded = false;
 		myRb.velocity =new Vector2(directionX * speed,jumpVelocity);
 
-		//anim.SetTrigger (jumpToHash);
+		animatorController.SetBool ("Jump", true);
+		if (grounded = false && myRb.velocity.y <= 0f) {
+			animatorController.SetBool ("Falling", true);
+		}    
         
 	}
 
@@ -79,6 +83,8 @@ public class playerScript : MonoBehaviour {
 		} 
 
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
+
+
 	}
 		
 	void Crouch()
