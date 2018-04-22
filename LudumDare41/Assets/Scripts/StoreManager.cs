@@ -40,9 +40,14 @@ public class StoreManager : MonoBehaviour {
         //Debug.Log(placingAction);
 		
 
-        if (placingAction && newAction)
+        if (placingAction)
         {
+            if(newAction)
             FindOrPlace();
+        }
+        else
+        {
+
         }
 
 

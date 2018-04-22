@@ -19,9 +19,7 @@ public class ColScript : MonoBehaviour {
     {
 		
 	}
-	void OnCollisionEnter2D(Collision2D col)
-    {
-    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy")
@@ -42,7 +40,7 @@ public class ColScript : MonoBehaviour {
                     myPlayerScript.Crouch();
                     break;
                 case "Reverse":
-                    myPlayerScript.Change();
+                    myPlayerScript.Reverse();
                     break;
                 case "WallJump":
                     myPlayerScript.WallJump();
@@ -57,5 +55,13 @@ public class ColScript : MonoBehaviour {
 			Destroy (col.gameObject);
 		}
 
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (theseColType == ColType.Legs)
+        {
+            myPlayerScript.grounded = true;
+
+        }
     }
 }

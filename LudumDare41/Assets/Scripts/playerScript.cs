@@ -7,53 +7,37 @@ public class playerScript : MonoBehaviour {
 	public float maxSpeed, initialSpeed, jumpVelocity, speedDecrease, fallMultiplier, lowJumpMultiplier, jumpMultiplier;
 
     public Vector3 spawnPosition;
-    private bool grounded;
+    public bool grounded;
 	private float speed;
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
 	private float counter;
 	private Vector3 currentPosition;
 
-	Animator anim;
+    private float direction;
 
-	public enum animStates
-	{
-		Running,
-		Jump,
-		Falling, 
-		Land, 
-		RunningToCrouch, 
-		CrouchToRunning
-	}
+    public float initialDirection;
 
-	private animStates currentState;
-	private animStates newState;
+    Animator anim;
 
+	
 
 	// Use this for initialization
 	void Start () 
 	{
         spawnPosition = transform.position;
 		myRb = GetComponent<Rigidbody2D> ();
+        anim = GetComponentInChildren<Animator>();
 		speed = initialSpeed;
 		jumpSpeed = jumpMultiplier * speed;
+        direction = initialDirection;
 
-		newState = animStates.Running;
-		currentState = newState;
     }
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		Move ();
-
-        /*if (Input.GetKeyDown("space"))
-		{
-			Jump();
-		}*/
-
-        /*Sprint ();
-		print (speed);*/
 
         if (myRb.velocity.y < 0)
         {
@@ -79,23 +63,19 @@ public class playerScript : MonoBehaviour {
             GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
         }
 
-		if (myRb.velocity.y <= 0f) {
-			changeState (animStates.Falling);
-		}
+
+        PassParameters();
     }
     public void Move()
 	{
-		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
+		myRb.velocity = new Vector2 (direction*speed, myRb.velocity.y);
 	}
 
     public void Jump()
 	{
 		speed = jumpSpeed;
 		grounded = false;
-		myRb.velocity =new Vector2(speed,jumpVelocity);
-
-		changeState (animStates.Jump);
-        
+		myRb.velocity =new Vector2(direction*speed,jumpVelocity);
 	}
 
     public void Sprint()
@@ -109,91 +89,39 @@ public class playerScript : MonoBehaviour {
 
     public void Crouch()
 	{
-		changeState (animStates.RunningToCrouch);
+		//changeState (animStates.RunningToCrouch);
 	}
 
-    public void Change()
+    public void Reverse()
 	{
-		if (speed > 0) {
-			speed = -Mathf.Abs (speed);
-		}
-		else if (speed < 0) {
-			speed = Mathf.Abs (speed);
-		}
+        direction *= -1;
+
+        Flip();
 	}
 
+    void Flip()
+    {
+        Vector3 theScale = transform.localScale;
+
+        theScale.x *= -1;
+
+        transform.localScale = theScale;
+    }
     public void WallJump()
 	{
-		Jump ();
-		Change ();
+        Reverse();
+
+        Jump();
 	}
 
-    private void OnCollisionEnter2D(Collision2D col)
+    void PassParameters()
     {
-        grounded = true;
+        anim.SetFloat("xSpeed", myRb.velocity.x);
+        anim.SetFloat("ySpeed", myRb.velocity.y);
+        anim.SetBool("Grounded", grounded);
+        //anim.SetBool("Crouch", currentState == )
     }
-	void changeState(animStates newState)
-	{
-		currentState = newState;
 
-		if (newState == animStates.Running) {
-			anim.SetBool ("Running", true);
-			anim.SetBool ("Jump", false);
-			anim.SetBool ("Falling", false);
-			anim.SetBool ("Land", false);
-			anim.SetBool ("RunningToCrouch", false);
-			anim.SetBool ("Crouch", false);
-			anim.SetBool ("CrouchToRunning", false);
-		}
-
-		else if (newState == animStates.Jump) {
-			anim.SetBool ("Jump", true);
-			anim.SetBool ("Running", false);
-			anim.SetBool ("Falling", false);
-			anim.SetBool ("Land", false);
-			anim.SetBool ("RunningToCrouch", false);
-			anim.SetBool ("Crouch", false);
-			anim.SetBool ("CrouchToRunning", false);
-		}
-
-		else if (newState == animStates.Falling) {
-			anim.SetBool ("Running", false);
-			anim.SetBool ("Jump", false);
-			anim.SetBool ("Falling", true);
-			anim.SetBool ("Land", false);
-			anim.SetBool ("RunningToCrouch", false);
-			anim.SetBool ("Crouch", false);
-			anim.SetBool ("CrouchToRunning", false);
-		}
-
-		else if (newState == animStates.Land) {
-			anim.SetBool ("Running", false);
-			anim.SetBool ("Jump", false);
-			anim.SetBool ("Falling", false);
-			anim.SetBool ("Land", true);
-			anim.SetBool ("RunningToCrouch", false);
-			anim.SetBool ("Crouch", false);
-			anim.SetBool ("CrouchToRunning", false);
-		}
-
-		else if (newState == animStates.RunningToCrouch) {
-			anim.SetBool ("Running", false);
-			anim.SetBool ("Jump", false);
-			anim.SetBool ("Falling", false);
-			anim.SetBool ("Land", false);
-			anim.SetBool ("RunningToCrouch", true);
-			anim.SetBool ("Crouch", false);
-			anim.SetBool ("CrouchToRunning", false);
-		}
-
-		else if (newState == animStates.CrouchToRunning) {
-			anim.SetBool ("Running", false);
-			anim.SetBool ("Jump", false);
-			anim.SetBool ("Falling", false);
-			anim.SetBool ("Land", false);
-			anim.SetBool ("RunningToCrouch", false);
-			anim.SetBool ("Crouch", false);
-			anim.SetBool ("CrouchToRunning", true);
-		}
-	}
+    
+	
 }
