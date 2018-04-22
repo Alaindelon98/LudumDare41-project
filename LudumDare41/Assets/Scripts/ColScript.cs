@@ -47,8 +47,7 @@ public class ColScript : MonoBehaviour {
                 case "WallJump":
                     myPlayerScript.WallJump();
                     break;
-
-
+                    
             }
         }
     }
