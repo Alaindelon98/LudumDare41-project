@@ -8,13 +8,13 @@ public class playerScript : MonoBehaviour {
 
     public Vector3 spawnPosition;
     public bool grounded;
-	private float speed;
+	public float speed;
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
 	private float counter;
 	private Vector3 currentPosition;
 
-    private float direction;
+    public float direction;
 
     public float initialDirection;
 

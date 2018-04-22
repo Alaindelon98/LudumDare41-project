@@ -115,6 +115,14 @@ public class GameManagerScript : MonoBehaviour
     }
     public void RespawnPlayer()
     {
+		player.direction = player.initialDirection;
+		player.speedDecrease = player.initialSpeed;
+		if (player.transform.localScale.x < 0) 
+		{
+			Vector3 scale = player.transform.localScale;
+			scale.x = 1;
+			player.transform.localScale = scale;
+		}
         totalRuns++;
 
         foreach (enemyScript e in enemies)
