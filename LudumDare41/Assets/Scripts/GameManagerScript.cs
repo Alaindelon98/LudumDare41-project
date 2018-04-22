@@ -16,7 +16,7 @@ public class GameManagerScript : MonoBehaviour
     public static float playerDistanceCounter, totalPlayerDistance, totalGamePlayerDistance, moneyLastRun, theseRunMoney;
     public static CameraScript mainCamera;
 
-    public static int initialJumpPrice, initialSprintPrice, initialCrouchPrice, initialReversePrice, wallJumpPrice;
+    public static float jumpPrice, sprintPrice, crouchPrice, reversePrice, wallJumpPrice;
 
 
     public enum GameState { Dead, OnRun };
