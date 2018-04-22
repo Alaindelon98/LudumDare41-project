@@ -31,7 +31,7 @@ public class StoreManager : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("Place new Action");
+                //Debug.Log("Place new Action");
                 NewAction();
                 placingAction = true;
             }
@@ -41,7 +41,6 @@ public class StoreManager : MonoBehaviour {
         else if (placingAction && newAction)
         {
             FindOrPlace();
-            
         }
 
 
@@ -64,17 +63,17 @@ public class StoreManager : MonoBehaviour {
         {
             if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
             {
-                Debug.Log("CAN BE PLACED TOP");
+                //Debug.Log("CAN BE PLACED TOP");
                 placeableTop = true;
             }
             else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 2, selectedCellPos.y, 0)) == null)
             {
-                Debug.Log("CAN BE PLACED RIGHT");
+                //Debug.Log("CAN BE PLACED RIGHT");
                 placeableRight = true;
             }
             else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 2, selectedCellPos.y, 0)) == null)
             {
-                Debug.Log("CAN BE PLACED LEFT");
+                //Debug.Log("CAN BE PLACED LEFT");
                 placeableLeft = true;
             }
         }
@@ -100,7 +99,7 @@ public class StoreManager : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                Debug.Log("Placed action and can be placed: " + canBePlaced);
+                //Debug.Log("Placed action and can be placed: " + canBePlaced);
                 placingAction = false;
                 ChangeColor("placed");
                 newActionCollider.enabled = true;
