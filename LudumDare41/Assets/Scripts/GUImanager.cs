@@ -20,7 +20,7 @@ public class GUImanager : MonoBehaviour {
     {
         MoneyCounter.text = GameManagerScript.PlayerMoney.ToString();
 
-        totalRuns.text = "Generations" + GameManagerScript.totalRuns.ToString();
+        totalRuns.text = "Generations : " + GameManagerScript.totalRuns.ToString();
 
         actualDistance.text  ="Actual Distance : "+ Mathf.FloorToInt (GameManagerScript.totalPlayerDistance);
         MaxDist.text = "Total Distance : " + +Mathf.FloorToInt(GameManagerScript.totalGamePlayerDistance);

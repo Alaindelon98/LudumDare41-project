@@ -41,6 +41,7 @@ public class ColScript : MonoBehaviour {
                     break;
                 case "Reverse":
                     myPlayerScript.Reverse();
+                  
 
                     break;      
             }

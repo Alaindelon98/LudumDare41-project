@@ -97,7 +97,8 @@ public class playerScript : MonoBehaviour {
 
     public void Reverse()
 	{
-		direction *= -1;
+
+        direction *= -1;
 		//speed *=-1;
         Flip();
 	}
@@ -105,6 +106,7 @@ public class playerScript : MonoBehaviour {
     void Flip()
     {
         Vector3 theScale = transform.localScale;
+        Debug.Log("peeee");
 
         theScale.x *= -1;
 
