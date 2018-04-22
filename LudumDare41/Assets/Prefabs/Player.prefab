@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 4481292065139172}
   - component: {fileID: 70870968648705802}
   - component: {fileID: 114680755741767986}
-  - component: {fileID: 114539571068985074}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -89,7 +88,6 @@ GameObject:
   - component: {fileID: 4569892116757868}
   - component: {fileID: 70879098688021376}
   - component: {fileID: 114059808911652066}
-  - component: {fileID: 114111886194944326}
   m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
@@ -189,7 +187,6 @@ GameObject:
   - component: {fileID: 70965759893377248}
   - component: {fileID: 70671335487604778}
   - component: {fileID: 114412303820664704}
-  - component: {fileID: 114902866734422196}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -484,18 +481,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theseColType: 0
---- !u!114 &114111886194944326
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1298584014742472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becd7c4d46edb2d42931ccc5eb4ddbb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theseColType: 0
 --- !u!114 &114381129515396418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -529,18 +514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theseColType: 2
---- !u!114 &114539571068985074
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185046724287000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becd7c4d46edb2d42931ccc5eb4ddbb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theseColType: 1
 --- !u!114 &114680755741767986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -553,18 +526,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theseColType: 1
---- !u!114 &114902866734422196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1921860176361116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becd7c4d46edb2d42931ccc5eb4ddbb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theseColType: 2
 --- !u!212 &212048505066803724
 SpriteRenderer:
   m_ObjectHideFlags: 1
