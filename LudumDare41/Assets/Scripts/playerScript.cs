@@ -9,6 +9,7 @@ public class playerScript : MonoBehaviour {
     public Vector3 spawnPosition;
     private bool grounded;
 	private float speed;
+	private int directionX;
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
 
@@ -18,6 +19,7 @@ public class playerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		directionX = 1;
         spawnPosition = transform.position;
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
@@ -57,14 +59,14 @@ public class playerScript : MonoBehaviour {
 	}
 	void Move()
 	{
-		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
+		myRb.velocity = new Vector2 (directionX* speed, myRb.velocity.y);
 	}
 		
 	void Jump()
 	{
 		speed = jumpSpeed;
 		grounded = false;
-		myRb.velocity =new Vector2(speed,jumpVelocity);
+		myRb.velocity =new Vector2(directionX * speed,jumpVelocity);
 
 		//anim.SetTrigger (jumpToHash);
         
@@ -86,18 +88,15 @@ public class playerScript : MonoBehaviour {
 
 	void Reverse()
 	{
-		if (speed > 0) {
-			speed = -Mathf.Abs (speed);
-		}
-		else if (speed < 0) {
-			speed = Mathf.Abs (speed);
-		}
+		directionX *= -1;
 	}
 
 	void WallJump()
 	{
+		//Reverse ();
+		directionX *= -1;
 		Jump ();
-		Reverse ();
+
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -118,7 +117,7 @@ public class playerScript : MonoBehaviour {
 			case "Crouch":
 				Crouch ();
 				break;
-			case "Reverse":
+			case "Change":
 				Reverse ();
 				break;
 			case "WallJump":
