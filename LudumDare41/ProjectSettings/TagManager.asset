@@ -14,6 +14,7 @@ TagManager:
   - Enemy
   - Reverse
   - Limite
+  - Coin
   layers:
   - Default
   - TransparentFX
