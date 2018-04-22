@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 114847916304094686}
   - component: {fileID: 114542877385480766}
   - component: {fileID: 114819965548660874}
+  - component: {fileID: 114536876615804592}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -611,7 +612,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4399692404510308}
-  - component: {fileID: 114276763489545438}
   m_Layer: 0
   m_Name: ShopObject
   m_TagString: Untagged
@@ -677,7 +677,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839119679978844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -360, y: -220, z: -4.3928576}
+  m_LocalPosition: {x: -591, y: -220, z: -4.3928576}
   m_LocalScale: {x: 54.857147, y: 54.857147, z: 54.857147}
   m_Children:
   - {fileID: 224719753198655076}
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114276763489545438}
+      - m_Target: {fileID: 114536876615804592}
         m_MethodName: SelectAction
         m_Mode: 5
         m_Arguments:
@@ -1260,34 +1260,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114276763489545438
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1839119679978844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b92280bfc93364bb0f5a7541dd0d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  JumpPrefab: {fileID: 1266469102848384, guid: 0b8a3d51dba6d9d459e01569664f3da8, type: 2}
-  SprintPrefab: {fileID: 1754606961141020, guid: c08f70952db68864dbaf7f580d17d451,
-    type: 2}
-  CrouchPrefab: {fileID: 1258709571918148, guid: 7bd229025cae0e044b1491fb49ce4e8d,
-    type: 2}
-  ReversePrefab: {fileID: 1629361125373000, guid: 4e507ce7924b9a9449b509bd2cb0945d,
-    type: 2}
-  WallJumpPrefab: {fileID: 1118884842277760, guid: cee88cd6ced3d264ca0117b09fb9267b,
-    type: 2}
-  levelTiles: {fileID: 0}
-  initialJumpPrice: 25
-  initialSprintPrice: 25
-  initialCrouchPrice: 25
-  initialReversePrice: 25
-  initialWallJumpPrice: 25
-  initialPriceIncrement: 1.5
-  placingAction: 0
 --- !u!114 &114294644042655760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1590,6 +1562,34 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114536876615804592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350862783189788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b92280bfc93364bb0f5a7541dd0d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpPrefab: {fileID: 1266469102848384, guid: 0b8a3d51dba6d9d459e01569664f3da8, type: 2}
+  SprintPrefab: {fileID: 1754606961141020, guid: c08f70952db68864dbaf7f580d17d451,
+    type: 2}
+  CrouchPrefab: {fileID: 1258709571918148, guid: 7bd229025cae0e044b1491fb49ce4e8d,
+    type: 2}
+  ReversePrefab: {fileID: 1629361125373000, guid: 4e507ce7924b9a9449b509bd2cb0945d,
+    type: 2}
+  WallJumpPrefab: {fileID: 1118884842277760, guid: cee88cd6ced3d264ca0117b09fb9267b,
+    type: 2}
+  levelTiles: {fileID: 0}
+  initialJumpPrice: 25
+  initialSprintPrice: 25
+  initialCrouchPrice: 25
+  initialReversePrice: 25
+  initialWallJumpPrice: 25
+  initialPriceIncrement: 1.5
+  placingAction: 0
 --- !u!114 &114542877385480766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114276763489545438}
+      - m_Target: {fileID: 114536876615804592}
         m_MethodName: SelectAction
         m_Mode: 5
         m_Arguments:
@@ -1960,7 +1960,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114276763489545438}
+      - m_Target: {fileID: 114536876615804592}
         m_MethodName: SelectAction
         m_Mode: 5
         m_Arguments:
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114276763489545438}
+      - m_Target: {fileID: 114536876615804592}
         m_MethodName: SelectAction
         m_Mode: 5
         m_Arguments:
@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114276763489545438}
+      - m_Target: {fileID: 114536876615804592}
         m_MethodName: SelectAction
         m_Mode: 5
         m_Arguments:
@@ -2959,7 +2959,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663523408951002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.036}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 4399692404510308}
@@ -2967,8 +2967,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.1, y: -4.23}
-  m_SizeDelta: {x: 184, y: 100.8}
+  m_AnchoredPosition: {x: -2.66, y: -3.13}
+  m_SizeDelta: {x: 266.898, y: 146.213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224506599712058868
 RectTransform:
@@ -3140,7 +3140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.4503613, y: -3.0229998}
+  m_AnchoredPosition: {x: 9.62, y: -3.22}
   m_SizeDelta: {x: 909.429, y: 209.897}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224722604772360280
@@ -3353,8 +3353,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -584.00366, y: -450.66864}
-  m_SizeDelta: {x: 184, y: 100.8}
+  m_AnchoredPosition: {x: -735.5957, y: -389.76212}
+  m_SizeDelta: {x: 266.8, y: 146.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224928318119186594
 RectTransform:
