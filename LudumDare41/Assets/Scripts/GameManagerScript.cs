@@ -96,6 +96,7 @@ public class GameManagerScript : MonoBehaviour
         player.gameObject.SetActive(false);
         moneyLastRun = theseRunMoney;
         playerDistanceCounter = 0;
+        totalGamePlayerDistance = totalPlayerDistance;
         totalPlayerDistance = 0;
         player.transform.position = player.spawnPosition;
         ChangePlayerState(GameState.Dead);
