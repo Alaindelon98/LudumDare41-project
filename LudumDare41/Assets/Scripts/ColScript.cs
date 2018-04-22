@@ -28,5 +28,27 @@ public class ColScript : MonoBehaviour {
         {
             GameManagerScript.PlayerDeath();
         }
+        if (theseColType == ColType.Legs)
+        {
+            switch (col.tag)
+            {
+                case "Jump":
+                   myPlayerScript.Jump();
+                    break;
+                case "Sprint":
+                    myPlayerScript.Sprint();
+                    break;
+                case "Crouch":
+                    myPlayerScript.Crouch();
+                    break;
+                case "Change":
+                    myPlayerScript.Change();
+                    break;
+                case "WallJump":
+                    myPlayerScript.WallJump();
+                    break;
+
+            }
+        }
     }
 }
