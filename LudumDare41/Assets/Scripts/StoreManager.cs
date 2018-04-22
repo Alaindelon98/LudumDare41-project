@@ -214,10 +214,36 @@ public class StoreManager : MonoBehaviour {
                 newActionCollider.enabled = true;
 
                 GameManagerScript.actions.Add(newAction.transform);
+                float typeCounter = 0;
+                foreach (Transform a in GameManagerScript.actions)
+                {
+                    if(a.tag == newActionType)
+                    {
+                        typeCounter++;
+                    }
+                }
 
                 switch(newActionType)
                 {
+                    case "Jump":
+                        GameManagerScript.jumpPrice = Mathf.Round(initialJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                        Debug.Log("Jump price: "+GameManagerScript.jumpPrice);
+                        break;
 
+                    case "Reverse":
+                        GameManagerScript.reversePrice = Mathf.Round(initialReversePrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                        Debug.Log(GameManagerScript.reversePrice);
+                        break;
+
+                    case "WallJump":
+                        GameManagerScript.wallJumpPrice = Mathf.Round(initialWallJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                        Debug.Log(GameManagerScript.wallJumpPrice);
+                        break;
+
+                    case "Sprint":
+                        GameManagerScript.sprintPrice = Mathf.Round(initialSprintPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                        Debug.Log(GameManagerScript.sprintPrice);
+                        break;
                 }
                 newAction = null;
                 newActionCollider = null;
@@ -244,6 +270,7 @@ public class StoreManager : MonoBehaviour {
                     {
                         GameManagerScript.actions.Remove(hit.collider.transform);
                         Destroy(hit.collider.gameObject);
+                        GameManagerScript.PlayerMoney += initialSprintPrice;
                     }
                 }
             }
