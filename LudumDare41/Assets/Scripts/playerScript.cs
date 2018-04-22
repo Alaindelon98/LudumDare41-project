@@ -19,7 +19,7 @@ public class playerScript : MonoBehaviour {
     public float initialDirection;
 
     Animator anim;
-
+    public ParticleSystem blood;
 	
 
 	// Use this for initialization
