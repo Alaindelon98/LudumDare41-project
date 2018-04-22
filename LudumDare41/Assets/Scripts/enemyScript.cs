@@ -11,6 +11,7 @@ public class enemyScript : MonoBehaviour
 	public int direction=1;
     private int originalDirection;
     public SpriteRenderer sprite;
+    private bool originalOrientation;
 
     
 
@@ -20,7 +21,7 @@ public class enemyScript : MonoBehaviour
     void Start () {
         originalPos = transform.position;
         originalDirection=direction;
-       
+        originalOrientation = sprite.flipX;
 
     }
 
@@ -32,7 +33,8 @@ public class enemyScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.gameObject.tag == "Limite") {
+		if (col.gameObject.tag == "Limite")
+        {
 			direction *= -1;
             Vector3 scale = transform.localScale;
             if (sprite.flipX == true)
@@ -53,8 +55,11 @@ public class enemyScript : MonoBehaviour
 	}
     public void ResetEnemy()
     {
+        Debug.Log("Hola");
+        
         direction = originalDirection;
         transform.position = originalPos;
+        sprite.flipX = originalOrientation;
     }
 
 }

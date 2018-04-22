@@ -32,7 +32,7 @@ public class GameManagerScript : MonoBehaviour
     {
         sumMoneyDistance_s = sumMoneyDistance;
         mainCamera = Camera.main.GetComponent<CameraScript>();
-
+        actualGameState = GameState.OnRun;
         enemies = new List<enemyScript>();
         actions = new List<Transform>();
 
@@ -108,7 +108,7 @@ public class GameManagerScript : MonoBehaviour
     }
     public  void PlayerDeath()
     {
-
+        
         ChangePlayerState(GameState.Dead);
 
 
@@ -124,9 +124,10 @@ public class GameManagerScript : MonoBehaviour
 			player.transform.localScale = scale;
 		}
         totalRuns++;
-
+        Debug.Log(enemies.Count);
         foreach (enemyScript e in enemies)
         {
+           
             e.ResetEnemy();
         }
 

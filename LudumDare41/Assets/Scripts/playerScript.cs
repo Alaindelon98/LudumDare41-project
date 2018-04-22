@@ -106,7 +106,6 @@ public class playerScript : MonoBehaviour {
     void Flip()
     {
         Vector3 theScale = transform.localScale;
-        Debug.Log("peeee");
 
         theScale.x *= -1;
 
