@@ -11,6 +11,8 @@ public class playerScript : MonoBehaviour {
 	private float speed;
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
+	private float counter;
+	private Vector3 currentPosition;
 
 	// Use this for initialization
 	void Start () 
@@ -48,7 +50,15 @@ public class playerScript : MonoBehaviour {
 		{
 			speed -= speedDecrease * Time.deltaTime;
 		}
-
+		if (currentPosition == transform.position) {
+			counter += Time.deltaTime;
+		} else {
+			counter = 0;
+		}
+		currentPosition = transform.position;
+		if (counter >= 3) {
+			GameManagerScript.PlayerDeath();
+		}
 	}
     public void Move()
 	{
