@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GameManagerScript : MonoBehaviour
 {
+	public static GameManagerScript current;
     public static int PlayerMoney;
     public static playerScript player;
 	public static List<enemyScript> enemies;

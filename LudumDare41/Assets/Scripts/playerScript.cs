@@ -99,8 +99,7 @@ public class playerScript : MonoBehaviour {
     {
         grounded = true;
     }
-
-
+		
     private void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
