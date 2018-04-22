@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212633555536711174}
   - component: {fileID: 61433960289832288}
   m_Layer: 0
-  m_Name: Change
+  m_Name: Reverse
   m_TagString: Change
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

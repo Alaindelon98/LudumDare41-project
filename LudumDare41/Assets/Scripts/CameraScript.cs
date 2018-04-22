@@ -19,21 +19,43 @@ public class CameraScript : MonoBehaviour
 
     void LateUpdate()
     {
-        //hacer el botoncito
-        if (lockOnPlayer && Input.GetKeyDown(KeyCode.Return))
-        {
-            lockOnPlayer = false;
-        }
-        else if (!lockOnPlayer && Input.GetKeyDown(KeyCode.Return))
-        {
-            lockOnPlayer = true;
-        }
+		/*Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
+		Vector3 moveX = new Vector3(pos.x * dragSpeed, 0, 0);
+		Vector3 moveY = new Vector3(0, pos.y * dragSpeed, 0);
 
+		if (moveX.x > 0f)
+		{
+			if (this.transform.position.x < outerRight)
+			{
+				transform.Translate(moveX, Space.World);
+			}
+		}
+		else
+		{
+			if (this.transform.position.x > outerLeft)
+			{
+				transform.Translate(moveX, Space.World);
+			}
+		}
+
+		if (moveY.y > 0f)
+		{
+			if (this.transform.position.y < outerTop)
+			{
+				transform.Translate(moveY, Space.World);
+			}
+		}
+		else
+		{
+			if (this.transform.position.y > outerDown)
+			{
+				transform.Translate(moveY, Space.World);
+			}
+		}*/
 
         if (!lockOnPlayer)
         {
             Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
 
             float left = Screen.width * 0.2f;
             float right = Screen.width - (Screen.width * 0.2f);
@@ -42,10 +64,8 @@ public class CameraScript : MonoBehaviour
             {
                 cameraDragging = true;
                 actualDragSpeed = dragSpeed;
-
             }
-
-
+				
             if (mousePosition.x < left)
             {
                 cameraDragging = true;
@@ -55,11 +75,8 @@ public class CameraScript : MonoBehaviour
                 cameraDragging = true;
             }
 
-
-
             if (cameraDragging)
             {
-
                 if (Input.GetMouseButtonDown(0))
                 {
                     dragOrigin = Input.mousePosition;
@@ -69,8 +86,8 @@ public class CameraScript : MonoBehaviour
                 if (!Input.GetMouseButton(0))
                     return;
 
-                Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
-                Vector3 moveX = new Vector3(pos.x * dragSpeed, 0, 0);
+              Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
+              Vector3 moveX = new Vector3(pos.x * dragSpeed, 0, 0);
 
                 if (moveX.x > 0f)
                 {
@@ -102,26 +119,47 @@ public class CameraScript : MonoBehaviour
                     }
                 }
             }
+
         }
 
         else
         {
-            this.transform.position = new Vector3(GameManagerScript.player.transform.position.x, GameManagerScript.player.transform.position.y, -10f);
+			if (this.transform.position.x > outerRight)
+			{
+				this.transform.position = new Vector3 (transform.position.x, GameManagerScript.player.transform.position.y, -10f);
+			}
+			if (this.transform.position.x < outerLeft)
+			{
+				this.transform.position = new Vector3 (transform.position.x, GameManagerScript.player.transform.position.y, -10f);
+			}
 
-            if (cameraDragging)
-            {
+			if (this.transform.position.y > outerTop)
+			{
+				this.transform.position = new Vector3 (GameManagerScript.player.transform.position.x, transform.position.y, -10f);
+			}
+			if (this.transform.position.y < outerTop)
+			{
+				this.transform.position = new Vector3 (GameManagerScript.player.transform.position.x, transform.position.y, -10f);
+			}
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    dragOrigin = Input.mousePosition;
-                    return;
-                }
-                Debug.Log(actualDragSpeed);
-                if (!Input.GetMouseButton(0)) return;
+            //this.transform.position = new Vector3(GameManagerScript.player.transform.position.x, GameManagerScript.player.transform.position.y, -10f);
 
-                Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
-                Vector3 move = new Vector3(pos.x * actualDragSpeed, 0, 0);
-            }
+			if (cameraDragging)
+			{
+
+				if (Input.GetMouseButtonDown(0))
+				{
+					dragOrigin = Input.mousePosition;
+					return;
+				}
+				Debug.Log(actualDragSpeed);
+				if (!Input.GetMouseButton(0)) return;
+
+				Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
+				Vector3 move = new Vector3(pos.x * actualDragSpeed, 0, 0);
+			}
+          
         }
+
     }
 }
