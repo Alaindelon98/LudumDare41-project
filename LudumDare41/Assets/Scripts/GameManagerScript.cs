@@ -11,7 +11,7 @@ public class GameManagerScript : MonoBehaviour
     public static List<enemyScript> enemies;
     public static List<Transform> actions;
     public float sumMoneyDistance;
-    public int RespawnTime;
+    public float RespawnTime;
     public static float sumMoneyDistance_s;
     public static float playerDistanceCounter, totalPlayerDistance, totalGamePlayerDistance, moneyLastRun, theseRunMoney;
     public static CameraScript mainCamera;
@@ -93,9 +93,10 @@ public class GameManagerScript : MonoBehaviour
     }
     public static void PlayerDeath()
     {
-
+        player.gameObject.SetActive(false);
         moneyLastRun = theseRunMoney;
         playerDistanceCounter = 0;
+        totalGamePlayerDistance = totalPlayerDistance;
         totalPlayerDistance = 0;
         player.transform.position = player.spawnPosition;
         ChangePlayerState(GameState.Dead);
