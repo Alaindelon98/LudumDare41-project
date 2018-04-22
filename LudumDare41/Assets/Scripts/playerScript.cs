@@ -84,7 +84,7 @@ public class playerScript : MonoBehaviour {
 		
 	}
 
-	void Change()
+	void Reverse()
 	{
 		if (speed > 0) {
 			speed = -Mathf.Abs (speed);
@@ -97,7 +97,7 @@ public class playerScript : MonoBehaviour {
 	void WallJump()
 	{
 		Jump ();
-		Change ();
+		Reverse ();
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -118,8 +118,8 @@ public class playerScript : MonoBehaviour {
 			case "Crouch":
 				Crouch ();
 				break;
-			case "Change":
-				Change ();
+			case "Reverse":
+				Reverse ();
 				break;
 			case "WallJump":
 				WallJump ();

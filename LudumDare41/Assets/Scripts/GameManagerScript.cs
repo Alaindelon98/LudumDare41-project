@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript current;
-    public static int PlayerMoney, totalRuns;
+    public static float PlayerMoney, totalRuns;
     public static playerScript player;
     public static List<enemyScript> enemies;
     public static List<Transform> actions;
