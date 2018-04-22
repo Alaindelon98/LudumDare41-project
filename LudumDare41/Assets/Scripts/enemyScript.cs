@@ -10,16 +10,22 @@ public class enemyScript : MonoBehaviour
     private Vector3 originalPos;
 	public int direction=1;
     private int originalDirection;
+    public SpriteRenderer sprite;
 
+    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    // Use this for initialization
+    void Start () {
         originalPos = transform.position;
         originalDirection=direction;
+       
+
     }
-	
-	// Update is called once per frame
-	void Update () 
+
+    // Update is called once per frame
+    void Update () 
 	{
 		Mov ();
 	}
@@ -28,6 +34,16 @@ public class enemyScript : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Limite") {
 			direction *= -1;
+            Vector3 scale = transform.localScale;
+            if (sprite.flipX == true)
+            {
+                sprite.flipX = false;
+            }
+            else
+            {
+                sprite.flipX = true;
+            }
+           
 		}
 	}
 
