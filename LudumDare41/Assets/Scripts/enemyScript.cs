@@ -11,10 +11,12 @@ public class enemyScript : MonoBehaviour
 	public int direction=1;
     private int originalDirection;
 
+
 	// Use this for initialization
 	void Start () {
         originalPos = transform.position;
-	}
+        originalDirection=direction;
+    }
 	
 	// Update is called once per frame
 	void Update () 

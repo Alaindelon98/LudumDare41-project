@@ -68,6 +68,7 @@ public class GameManagerScript : MonoBehaviour
                 player.transform.position = player.spawnPosition;
                 break;
             case GameState.OnRun:
+
                 break;
         }
         actualGameState = newState;
