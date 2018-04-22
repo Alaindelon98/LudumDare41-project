@@ -51,5 +51,12 @@ public class ColScript : MonoBehaviour {
 
             }
         }
+		if (col.gameObject.tag == "Coin") 
+		{
+			GameManagerScript.PlayerMoney += GameManagerScript.moneyFromCoin;
+
+			Destroy (col.gameObject);
+		}
+
     }
 }

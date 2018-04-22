@@ -15,6 +15,8 @@ public class GameManagerScript : MonoBehaviour
     public static float sumMoneyDistance_s;
     public static float playerDistanceCounter, totalPlayerDistance, totalGamePlayerDistance, moneyLastRun, theseRunMoney;
     public static CameraScript mainCamera;
+	public static float moneyFromCoin;
+	public float initialCoinValue;
 
     public static float jumpPrice, sprintPrice, crouchPrice, reversePrice, wallJumpPrice;
 
@@ -30,6 +32,8 @@ public class GameManagerScript : MonoBehaviour
 
         enemies = new List<enemyScript>();
         actions = new List<Transform>();
+
+		moneyFromCoin = initialCoinValue;
     }
 
     // Update is called once per frame
