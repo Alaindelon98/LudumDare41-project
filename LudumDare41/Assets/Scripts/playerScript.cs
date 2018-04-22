@@ -14,6 +14,22 @@ public class playerScript : MonoBehaviour {
 	private float counter;
 	private Vector3 currentPosition;
 
+	Animator anim;
+
+	public enum animStates
+	{
+		Running,
+		Jump,
+		Falling, 
+		Land, 
+		RunningToCrouch, 
+		CrouchToRunning
+	}
+
+	private animStates currentState;
+	private animStates newState;
+
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -21,6 +37,9 @@ public class playerScript : MonoBehaviour {
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
 		jumpSpeed = jumpMultiplier * speed;
+
+		newState = animStates.Running;
+		currentState = newState;
     }
 	
 	// Update is called once per frame
@@ -59,6 +78,10 @@ public class playerScript : MonoBehaviour {
 		if (counter >= 3) {
             GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
         }
+
+		if (myRb.velocity.y <= 0f) {
+			changeState (animStates.Falling);
+		}
     }
     public void Move()
 	{
@@ -70,6 +93,8 @@ public class playerScript : MonoBehaviour {
 		speed = jumpSpeed;
 		grounded = false;
 		myRb.velocity =new Vector2(speed,jumpVelocity);
+
+		changeState (animStates.Jump);
         
 	}
 
@@ -84,7 +109,7 @@ public class playerScript : MonoBehaviour {
 
     public void Crouch()
 	{
-		
+		changeState (animStates.RunningToCrouch);
 	}
 
     public void Change()
@@ -107,4 +132,68 @@ public class playerScript : MonoBehaviour {
     {
         grounded = true;
     }
+	void changeState(animStates newState)
+	{
+		currentState = newState;
+
+		if (newState == animStates.Running) {
+			anim.SetBool ("Running", true);
+			anim.SetBool ("Jump", false);
+			anim.SetBool ("Falling", false);
+			anim.SetBool ("Land", false);
+			anim.SetBool ("RunningToCrouch", false);
+			anim.SetBool ("Crouch", false);
+			anim.SetBool ("CrouchToRunning", false);
+		}
+
+		else if (newState == animStates.Jump) {
+			anim.SetBool ("Jump", true);
+			anim.SetBool ("Running", false);
+			anim.SetBool ("Falling", false);
+			anim.SetBool ("Land", false);
+			anim.SetBool ("RunningToCrouch", false);
+			anim.SetBool ("Crouch", false);
+			anim.SetBool ("CrouchToRunning", false);
+		}
+
+		else if (newState == animStates.Falling) {
+			anim.SetBool ("Running", false);
+			anim.SetBool ("Jump", false);
+			anim.SetBool ("Falling", true);
+			anim.SetBool ("Land", false);
+			anim.SetBool ("RunningToCrouch", false);
+			anim.SetBool ("Crouch", false);
+			anim.SetBool ("CrouchToRunning", false);
+		}
+
+		else if (newState == animStates.Land) {
+			anim.SetBool ("Running", false);
+			anim.SetBool ("Jump", false);
+			anim.SetBool ("Falling", false);
+			anim.SetBool ("Land", true);
+			anim.SetBool ("RunningToCrouch", false);
+			anim.SetBool ("Crouch", false);
+			anim.SetBool ("CrouchToRunning", false);
+		}
+
+		else if (newState == animStates.RunningToCrouch) {
+			anim.SetBool ("Running", false);
+			anim.SetBool ("Jump", false);
+			anim.SetBool ("Falling", false);
+			anim.SetBool ("Land", false);
+			anim.SetBool ("RunningToCrouch", true);
+			anim.SetBool ("Crouch", false);
+			anim.SetBool ("CrouchToRunning", false);
+		}
+
+		else if (newState == animStates.CrouchToRunning) {
+			anim.SetBool ("Running", false);
+			anim.SetBool ("Jump", false);
+			anim.SetBool ("Falling", false);
+			anim.SetBool ("Land", false);
+			anim.SetBool ("RunningToCrouch", false);
+			anim.SetBool ("Crouch", false);
+			anim.SetBool ("CrouchToRunning", true);
+		}
+	}
 }
