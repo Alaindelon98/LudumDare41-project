@@ -13,7 +13,6 @@ public class enemyScript : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		this.enabled = false;
         originalPos = transform.position;
 	}
 	
@@ -25,13 +24,14 @@ public class enemyScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-        direction *= -1;
+		if (col.gameObject.tag == "Limite") {
+			direction *= -1;
+		}
 	}
 
 	private void Mov()
 	{
 		transform.position += new Vector3 (direction*speed*Time.deltaTime,0,0);
-		//saltito 
 	}
     public void ResetEnemy()
     {
