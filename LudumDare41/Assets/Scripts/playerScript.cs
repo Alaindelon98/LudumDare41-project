@@ -9,16 +9,23 @@ public class playerScript : MonoBehaviour {
     public Vector3 spawnPosition;
     private bool grounded;
 	private float speed;
+	private int directionX;
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
+
+	Animator animatorController;
 
 	// Use this for initialization
 	void Start () 
 	{
+		directionX = 1;
         spawnPosition = transform.position;
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
 		jumpSpeed = jumpMultiplier * speed;
+
+		animatorController = GetComponentInChildren<Animator> ();
+
     }
 	
 	// Update is called once per frame
@@ -50,51 +57,79 @@ public class playerScript : MonoBehaviour {
 		}
 
 	}
-    public void Move()
+	void Move()
 	{
-		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
-	}
+		myRb.velocity = new Vector2 (directionX* speed, myRb.velocity.y);
 
-    public void Jump()
+	}
+		
+	void Jump()
 	{
 		speed = jumpSpeed;
 		grounded = false;
-		myRb.velocity =new Vector2(speed,jumpVelocity);
+		myRb.velocity =new Vector2(directionX * speed,jumpVelocity);
+
+		animatorController.SetBool ("Jump", true);
+		if (grounded = false && myRb.velocity.y <= 0f) {
+			animatorController.SetBool ("Falling", true);
+		}    
         
 	}
 
-    public void Sprint()
+	void Sprint()
 	{
 		if (speed <= maxSpeed) {
 			speed = maxSpeed;
 		} 
 
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
-	}
 
-    public void Crouch()
+
+	}
+		
+	void Crouch()
 	{
 		
 	}
 
-    public void Change()
+	void Reverse()
 	{
-		if (speed > 0) {
-			speed = -Mathf.Abs (speed);
-		}
-		else if (speed < 0) {
-			speed = Mathf.Abs (speed);
-		}
+		directionX *= -1;
 	}
 
-    public void WallJump()
+	void WallJump()
 	{
+		//Reverse ();
+		directionX *= -1;
 		Jump ();
-		Change ();
+
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         grounded = true;
+    }
+		
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.tag)
+        {
+            case "Jump":
+                Jump();
+                break;
+            case "Sprint":
+                Sprint();
+                break;
+			case "Crouch":
+				Crouch ();
+				break;
+			case "Change":
+				Reverse ();
+				break;
+			case "WallJump":
+				WallJump ();
+				break;
+			
+        }
     }
 }
