@@ -41,7 +41,7 @@ public class ColScript : MonoBehaviour {
                 case "Crouch":
                     myPlayerScript.Crouch();
                     break;
-                case "Change":
+                case "Reverse":
                     myPlayerScript.Change();
                     break;
                 case "WallJump":

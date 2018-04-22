@@ -93,6 +93,10 @@ public class StoreManager : MonoBehaviour {
                 }
                 break;
         }
+        if (placingAction)
+        {
+            newActionType = type;
+        }
     }
 
     void BuyAction(GameObject prefab)
@@ -132,26 +136,54 @@ public class StoreManager : MonoBehaviour {
             {
                 placeableLeft = true;
             }
-            else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
+
+            if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
             {
                 placeableTop = true;
             }
         }
 
-        if (placeableTop || placeableRight || placeableLeft)
+        //Debug.Log("Action type"+ newActionType);
+        if (placeableTop) 
         {
-            if(newActionType != "WallJump" || (newActionType == "WallJump" && !placeableTop))
+            if(newActionType != "WallJump")
             {
+                //Debug.Log("Can place top");
                 canBePlaced = true;
                 ChangeColor("canPlace");
             }
             else
             {
+                if (placeableRight || placeableLeft)
+                {
+                    canBePlaced = true;
+                    ChangeColor("canPlace");
+                }
+                else
+                {
+                    canBePlaced = false;
+                    ChangeColor("cannotPlace");
+                }
+            }
+
+
+
+        }
+        else if (placeableRight || placeableLeft)
+        {
+            if (newActionType != "WallJump")
+            {
                 canBePlaced = false;
                 ChangeColor("cannotPlace");
             }
 
+            else
+            {
+                canBePlaced = true;
+                ChangeColor("canPlace");
+            }
         }
+
         else
         {
             canBePlaced = false;
@@ -180,6 +212,7 @@ public class StoreManager : MonoBehaviour {
                 newAction = null;
                 newActionCollider = null;
                 newActionRenderer = null;
+                newActionType = null;
             }
         }
     }
