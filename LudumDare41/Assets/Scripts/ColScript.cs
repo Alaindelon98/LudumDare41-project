@@ -24,7 +24,6 @@ public class ColScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
-            myPlayerScript.blood.Play();
 			GameManagerScript.death.Play ();
             GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
         }
