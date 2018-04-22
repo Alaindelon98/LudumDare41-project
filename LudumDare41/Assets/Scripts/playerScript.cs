@@ -9,23 +9,18 @@ public class playerScript : MonoBehaviour {
     public Vector3 spawnPosition;
     private bool grounded;
 	private float speed;
-	private int directionX;
 	private Rigidbody2D myRb;
 	private float jumpSpeed;
-
-	Animator animatorController;
+	private float counter;
+	private Vector3 currentPosition;
 
 	// Use this for initialization
 	void Start () 
 	{
-		directionX = 1;
         spawnPosition = transform.position;
 		myRb = GetComponent<Rigidbody2D> ();
 		speed = initialSpeed;
 		jumpSpeed = jumpMultiplier * speed;
-
-		animatorController = GetComponentInChildren<Animator> ();
-
     }
 	
 	// Update is called once per frame
@@ -55,81 +50,61 @@ public class playerScript : MonoBehaviour {
 		{
 			speed -= speedDecrease * Time.deltaTime;
 		}
-
+		if (currentPosition == transform.position) {
+			counter += Time.deltaTime;
+		} else {
+			counter = 0;
+		}
+		currentPosition = transform.position;
+		if (counter >= 3) {
+			GameManagerScript.PlayerDeath();
+		}
 	}
-	void Move()
+    public void Move()
 	{
-		myRb.velocity = new Vector2 (directionX* speed, myRb.velocity.y);
-
+		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
 	}
-		
-	void Jump()
+
+    public void Jump()
 	{
 		speed = jumpSpeed;
 		grounded = false;
-		myRb.velocity =new Vector2(directionX * speed,jumpVelocity);
-
-		animatorController.SetBool ("Jump", true);
-		if (grounded = false && myRb.velocity.y <= 0f) {
-			animatorController.SetBool ("Falling", true);
-		}    
+		myRb.velocity =new Vector2(speed,jumpVelocity);
         
 	}
 
-	void Sprint()
+    public void Sprint()
 	{
 		if (speed <= maxSpeed) {
 			speed = maxSpeed;
 		} 
 
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
-
-
 	}
-		
-	void Crouch()
+
+    public void Crouch()
 	{
 		
 	}
 
-	void Reverse()
+    public void Change()
 	{
-		directionX *= -1;
+		if (speed > 0) {
+			speed = -Mathf.Abs (speed);
+		}
+		else if (speed < 0) {
+			speed = Mathf.Abs (speed);
+		}
 	}
 
-	void WallJump()
+    public void WallJump()
 	{
-		//Reverse ();
-		directionX *= -1;
 		Jump ();
-
+		Change ();
 	}
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         grounded = true;
-    }
-		
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        switch (col.tag)
-        {
-            case "Jump":
-                Jump();
-                break;
-            case "Sprint":
-                Sprint();
-                break;
-			case "Crouch":
-				Crouch ();
-				break;
-			case "Change":
-				Reverse ();
-				break;
-			case "WallJump":
-				WallJump ();
-				break;
-			
-        }
     }
 }
