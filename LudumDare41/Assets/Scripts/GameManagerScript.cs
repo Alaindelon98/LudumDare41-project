@@ -60,6 +60,12 @@ public class GameManagerScript : MonoBehaviour
         switch (newState)
         {
             case GameState.Dead:
+                player.gameObject.SetActive(false);
+                moneyLastRun = theseRunMoney;
+                playerDistanceCounter = 0;
+                totalGamePlayerDistance = totalPlayerDistance;
+                totalPlayerDistance = 0;
+                player.transform.position = player.spawnPosition;
                 break;
             case GameState.OnRun:
                 break;
@@ -95,14 +101,9 @@ public class GameManagerScript : MonoBehaviour
         player = _player;
         enemies = _enemies;
     }
-    public static void PlayerDeath()
+    public  void PlayerDeath()
     {
-        player.gameObject.SetActive(false);
-        moneyLastRun = theseRunMoney;
-        playerDistanceCounter = 0;
-        totalGamePlayerDistance = totalPlayerDistance;
-        totalPlayerDistance = 0;
-        player.transform.position = player.spawnPosition;
+
         ChangePlayerState(GameState.Dead);
 
 
