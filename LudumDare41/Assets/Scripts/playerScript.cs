@@ -68,14 +68,16 @@ public class playerScript : MonoBehaviour {
     }
     public void Move()
 	{
-		myRb.velocity = new Vector2 (direction*speed, myRb.velocity.y);
+		//myRb.velocity = new Vector2 (speed, myRb.velocity.y);
+		myRb.velocity = new Vector2 (direction* speed, myRb.velocity.y);
 	}
 
     public void Jump()
 	{
 		speed = jumpSpeed;
 		grounded = false;
-		myRb.velocity =new Vector2(direction*speed,jumpVelocity);
+		//myRb.velocity =new Vector2( speed,jumpVelocity);
+		myRb.velocity =new Vector2(direction * speed,jumpVelocity);
 	}
 
     public void Sprint()
@@ -84,7 +86,8 @@ public class playerScript : MonoBehaviour {
 			speed = maxSpeed;
 		} 
 
-		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
+		//myRb.velocity = new Vector2 (speed, myRb.velocity.y);
+		myRb.velocity = new Vector2 (direction* speed, myRb.velocity.y);
 	}
 
     public void Crouch()
@@ -94,8 +97,8 @@ public class playerScript : MonoBehaviour {
 
     public void Reverse()
 	{
-        direction *= -1;
-
+		direction *= -1;
+		//speed *=-1;
         Flip();
 	}
 
@@ -106,12 +109,23 @@ public class playerScript : MonoBehaviour {
         theScale.x *= -1;
 
         transform.localScale = theScale;
+
+		/*print ("changeee");
+			if (item.flipX == false) {
+				
+				item.flipX = true;
+			} else if (item.flipX == true) {
+				item.flipX = false;
+			}
+		}*/
     }
     public void WallJump()
 	{
-        Reverse();
-
-        Jump();
+		Jump ();
+        //Reverse();
+		direction *= -1;
+		//speed *=-1;
+		Flip ();
 	}
 
     void PassParameters()

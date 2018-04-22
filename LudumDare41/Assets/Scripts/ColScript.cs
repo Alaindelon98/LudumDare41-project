@@ -41,13 +41,18 @@ public class ColScript : MonoBehaviour {
                     break;
                 case "Reverse":
                     myPlayerScript.Reverse();
-                    break;
-                case "WallJump":
-                    myPlayerScript.WallJump();
-                    break;
-                    
+
+                    break;      
             }
         }
+		if (theseColType == ColType.Body) 
+		{
+			if(col.gameObject.tag == "WallJump")
+			{
+				myPlayerScript.WallJump();
+			}
+		}
+
 		if (col.gameObject.tag == "Coin") 
 		{
 			GameManagerScript.PlayerMoney += GameManagerScript.moneyFromCoin;
