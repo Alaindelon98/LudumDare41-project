@@ -19,8 +19,11 @@ public class ColScript : MonoBehaviour {
     {
 		
 	}
-    void OnCollisionEnter2D()
+	void OnCollisionEnter2D(Collision2D col)
     {
-
+		if (col.gameObject.tag == "Enemy") 
+		{
+			GameManagerScript.PlayerDeath ();
+		}
     }
 }
