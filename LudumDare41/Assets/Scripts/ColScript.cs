@@ -21,7 +21,6 @@ public class ColScript : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
     {
-		
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
