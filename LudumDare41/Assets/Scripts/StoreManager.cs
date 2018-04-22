@@ -21,6 +21,9 @@ public class StoreManager : MonoBehaviour {
 
     public int initialJumpPrice, initialSprintPrice, initialCrouchPrice, initialReversePrice, initialWallJumpPrice;
 
+    public float initialPriceIncrement;
+
+
     [HideInInspector]
     public bool placingAction;
 
@@ -34,24 +37,21 @@ public class StoreManager : MonoBehaviour {
         GameManagerScript.crouchPrice = initialCrouchPrice;
         GameManagerScript.reversePrice = initialReversePrice;
         GameManagerScript.wallJumpPrice = initialWallJumpPrice;
+        GameManagerScript.priceIncrement = initialPriceIncrement;
 	}
 	
 	void Update () {
-        //Debug.Log(placingAction);
-		
 
         if (placingAction)
         {
             if(newAction)
             FindOrPlace();
         }
+
         else
         {
-
+            FindOrDelete();
         }
-
-
-
 	}
 
     public void SelectAction(string type)
@@ -214,6 +214,10 @@ public class StoreManager : MonoBehaviour {
 
                 GameManagerScript.actions.Add(newAction.transform);
 
+                switch(newActionType)
+                {
+
+                }
                 newAction = null;
                 newActionCollider = null;
                 newActionRenderer = null;
@@ -221,6 +225,31 @@ public class StoreManager : MonoBehaviour {
             }
         }
     }
+
+    void FindOrDelete()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if(hit.collider != null)
+            {
+                if(hit.collider.tag == "Jump" || hit.collider.tag == "Sprint" || hit.collider.tag == "Reverse" || hit.collider.tag == "WallJump" || hit.collider.tag == "Crouch")
+                {
+                    if(GameManagerScript.actions.Contains(hit.collider.transform))
+                    {
+                        GameManagerScript.actions.Remove(hit.collider.transform);
+                        Destroy(hit.collider.gameObject);
+                    }
+                }
+            }
+        }
+    }
+
+    
     void ChangeColor(string type)
     {
         Color tmp = newActionRenderer.color;

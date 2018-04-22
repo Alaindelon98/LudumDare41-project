@@ -20,6 +20,9 @@ public class GameManagerScript : MonoBehaviour
 
     public static float jumpPrice, sprintPrice, crouchPrice, reversePrice, wallJumpPrice;
 
+    public static float priceIncrement;
+
+
 
     public enum GameState { Dead, OnRun };
     public static GameState actualGameState;
@@ -55,6 +58,7 @@ public class GameManagerScript : MonoBehaviour
         }
 
     }
+
     public static void ChangePlayerState(GameState newState)
     {
         switch (newState)

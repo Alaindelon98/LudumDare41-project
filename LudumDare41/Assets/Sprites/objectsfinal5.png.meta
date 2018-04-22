@@ -4,16 +4,16 @@ timeCreated: 1524401444
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: objectsfinal5_0
-    21300002: objectsfinal5_1
-    21300004: objectsfinal5_2
-    21300006: objectsfinal5_3
-    21300008: objectsfinal5_4
-    21300010: objectsfinal5_5
-    21300012: objectsfinal5_6
-    21300014: objectsfinal5_7
-    21300016: objectsfinal5_8
-    21300018: objectsfinal5_9
+    21300000: jump_0
+    21300002: jump_1
+    21300004: crouch_0
+    21300006: crouch_1
+    21300008: reverse_0
+    21300010: reverse_1
+    21300012: sprint_0
+    21300014: sprint_1
+    21300016: wallJump_0
+    21300018: wallJump_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -56,7 +56,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 180
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -86,11 +86,21 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: objectsfinal5_0
+      name: jump_0
       rect:
         serializedVersion: 2
         x: 36
@@ -98,13 +108,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_1
+      name: jump_1
       rect:
         serializedVersion: 2
         x: 216
@@ -112,13 +122,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_2
+      name: crouch_0
       rect:
         serializedVersion: 2
         x: 36
@@ -126,13 +136,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_3
+      name: crouch_1
       rect:
         serializedVersion: 2
         x: 216
@@ -140,13 +150,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_4
+      name: reverse_0
       rect:
         serializedVersion: 2
         x: 36
@@ -154,13 +164,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_5
+      name: reverse_1
       rect:
         serializedVersion: 2
         x: 216
@@ -168,13 +178,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_6
+      name: sprint_0
       rect:
         serializedVersion: 2
         x: 36
@@ -182,13 +192,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_7
+      name: sprint_1
       rect:
         serializedVersion: 2
         x: 216
@@ -196,13 +206,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_8
+      name: wallJump_0
       rect:
         serializedVersion: 2
         x: 36
@@ -210,13 +220,13 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objectsfinal5_9
+      name: wallJump_1
       rect:
         serializedVersion: 2
         x: 216
@@ -224,7 +234,7 @@ TextureImporter:
         width: 180
         height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
