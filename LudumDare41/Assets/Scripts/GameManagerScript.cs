@@ -74,7 +74,6 @@ public class GameManagerScript : MonoBehaviour
             {
                 PlayerMoney++;
                 theseRunMoney++;
-                Debug.Log("ActualMoney " + PlayerMoney);
                 playerDistanceCounter = 0;
             }
         }
