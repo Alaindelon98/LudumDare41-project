@@ -12,6 +12,7 @@ TagManager:
   - Change
   - WallJump
   - Enemy
+  - Reverse
   layers:
   - Default
   - TransparentFX

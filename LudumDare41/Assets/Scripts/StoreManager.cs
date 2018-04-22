@@ -20,20 +20,21 @@ public class StoreManager : MonoBehaviour {
     private string newActionType;
 
     [HideInInspector]
-    public int jumpPrice, sprintPrice, crouchPrice, reversePrice, wallJumpPrice;
-
-    [HideInInspector]
     public bool placingAction;
+
+    public float initialJumpPrice, initialSprintPrice, initialCrouchPrice, initialReversePrice, initialWallJumpPrice;
+
+    public float priceIncreasePercentage;
 
 
     void Start () {
         placingAction = false;
         newAction = null;
 
-        jumpPrice = GameManagerScript.initialJumpPrice;
-        sprintPrice = GameManagerScript.initialSprintPrice;
-        crouchPrice = GameManagerScript.initialCrouchPrice;
-        reversePrice = GameManagerScript.initialCrouchPrice;
+        GameManagerScript.jumpPrice = initialJumpPrice;
+        GameManagerScript.sprintPrice = initialSprintPrice;
+        GameManagerScript.crouchPrice = initialCrouchPrice;
+        GameManagerScript.reversePrice = initialReversePrice;
 	}
 	
 	void Update () {
@@ -54,42 +55,42 @@ public class StoreManager : MonoBehaviour {
         switch (type)
         {
             case "Jump":
-                if (GameManagerScript.PlayerMoney >= jumpPrice)
+                if (GameManagerScript.PlayerMoney >= GameManagerScript.jumpPrice)
                 {
                     BuyAction(JumpPrefab);
-                    GameManagerScript.PlayerMoney -= jumpPrice;
+                    GameManagerScript.PlayerMoney -= GameManagerScript.jumpPrice;
                 }
                 break;
 
             case "Sprint":
-                if (GameManagerScript.PlayerMoney >= sprintPrice)
+                if (GameManagerScript.PlayerMoney >= GameManagerScript.sprintPrice)
                 {
                     BuyAction(SprintPrefab);
-                    GameManagerScript.PlayerMoney -= sprintPrice;
+                    GameManagerScript.PlayerMoney -= GameManagerScript.sprintPrice;
                 }
                 break;
 
             case "Crouch":
-                if (GameManagerScript.PlayerMoney >= crouchPrice)
+                if (GameManagerScript.PlayerMoney >= GameManagerScript.crouchPrice)
                 {
                     BuyAction(CrouchPrefab);
-                    GameManagerScript.PlayerMoney -= crouchPrice;
+                    GameManagerScript.PlayerMoney -= GameManagerScript.crouchPrice;
                 }
                 break;
 
             case "Reverse":
-                if (GameManagerScript.PlayerMoney >= reversePrice)
+                if (GameManagerScript.PlayerMoney >= GameManagerScript.reversePrice)
                 {
                     BuyAction(ReversePrefab);
-                    GameManagerScript.PlayerMoney -= reversePrice;
+                    GameManagerScript.PlayerMoney -= GameManagerScript.reversePrice;
                 }
                 break;
 
             case "WallJump":
-                if (GameManagerScript.PlayerMoney >= wallJumpPrice)
+                if (GameManagerScript.PlayerMoney >= GameManagerScript.wallJumpPrice)
                 {
                     BuyAction(WallJumpPrefab);
-                    GameManagerScript.PlayerMoney -= wallJumpPrice;
+                    GameManagerScript.PlayerMoney -= GameManagerScript.wallJumpPrice;
                 }
                 break;
         }
