@@ -57,9 +57,9 @@ public class playerScript : MonoBehaviour {
 		}
 		currentPosition = transform.position;
 		if (counter >= 3) {
-			GameManagerScript.PlayerDeath();
-		}
-	}
+            GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
+        }
+    }
     public void Move()
 	{
 		myRb.velocity = new Vector2 (speed, myRb.velocity.y);
