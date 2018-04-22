@@ -19,40 +19,6 @@ public class CameraScript : MonoBehaviour
 
     void LateUpdate()
     {
-		/*Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
-		Vector3 moveX = new Vector3(pos.x * dragSpeed, 0, 0);
-		Vector3 moveY = new Vector3(0, pos.y * dragSpeed, 0);
-
-		if (moveX.x > 0f)
-		{
-			if (this.transform.position.x < outerRight)
-			{
-				transform.Translate(moveX, Space.World);
-			}
-		}
-		else
-		{
-			if (this.transform.position.x > outerLeft)
-			{
-				transform.Translate(moveX, Space.World);
-			}
-		}
-
-		if (moveY.y > 0f)
-		{
-			if (this.transform.position.y < outerTop)
-			{
-				transform.Translate(moveY, Space.World);
-			}
-		}
-		else
-		{
-			if (this.transform.position.y > outerDown)
-			{
-				transform.Translate(moveY, Space.World);
-			}
-		}*/
-
         if (!lockOnPlayer)
         {
             Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
