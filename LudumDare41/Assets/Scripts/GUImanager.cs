@@ -8,6 +8,7 @@ public class GUImanager : MonoBehaviour {
 
     public Text MoneyCounter;
     public Text totalRuns, actualDistance, MaxDist, moneyLastRun;
+    public Text jumpPrice, sprintPrice, reversePrice, wallJumpPrice;
 
 	// Use this for initialization
 	void Start ()
@@ -16,7 +17,7 @@ public class GUImanager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         MoneyCounter.text = GameManagerScript.PlayerMoney.ToString();
 
@@ -26,6 +27,12 @@ public class GUImanager : MonoBehaviour {
         MaxDist.text = "Total Distance : " + +Mathf.FloorToInt(GameManagerScript.totalGamePlayerDistance);
 
         moneyLastRun.text = "Last Run Money :"+GameManagerScript.moneyLastRun;
+
+        jumpPrice.text = GameManagerScript.jumpPrice.ToString();
+        sprintPrice.text = GameManagerScript.sprintPrice.ToString();
+        reversePrice.text = GameManagerScript.reversePrice.ToString();
+        wallJumpPrice.text = GameManagerScript.wallJumpPrice.ToString();
+
 
 
     }
