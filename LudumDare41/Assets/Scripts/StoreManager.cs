@@ -40,70 +40,74 @@ public class StoreManager : MonoBehaviour {
 
         else if (placingAction && newAction)
         {
-            canBePlaced = false;
-            placeableRight = false;
-            placeableLeft = false;
-            placeableTop = false;
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-
-            Vector3Int mousePosInt = new Vector3Int((int)Mathf.Floor(mousePos.x), (int)Mathf.Floor(mousePos.y), (int)Mathf.Floor(mousePos.z));
-
-            Vector3Int selectedCellPos = levelTiles.WorldToCell(mousePosInt);
-       
-            if (levelTiles.GetTile(selectedCellPos) != null)
-            {
-                if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
-                {
-                    Debug.Log("CAN BE PLACED TOP");
-                    placeableTop = true;
-                }
-                else if(levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 2, selectedCellPos.y, 0)) == null)
-                {
-                    Debug.Log("CAN BE PLACED RIGHT");
-                    placeableRight = true;
-                }
-                else if(levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 2, selectedCellPos.y, 0)) == null)
-                {
-                    Debug.Log("CAN BE PLACED LEFT");
-                    placeableLeft = true;
-                }
-            }
-
-            if(placeableTop || placeableRight || placeableLeft)
-            {
-                canBePlaced = true;
-                ChangeColor("canPlace");
-            }
-            else
-            {
-                canBePlaced = false;
-                ChangeColor("cannotPlace");
-            }
-
-          
-            if (!canBePlaced)
-            {
-                newAction.transform.position = mousePos;
-            }
-
-            else
-            {
-                if(Input.GetButtonDown("Fire1"))
-                {
-                    Debug.Log("Placed action and can be placed: " + canBePlaced);
-                    placingAction = false;
-                    ChangeColor("placed");
-                    newActionCollider.enabled = true;
-                }
-                newAction.transform.position = levelTiles.GetCellCenterWorld(selectedCellPos);
-            }
+            FindOrPlace();
+            
         }
 
 
 
 	}
+    void FindOrPlace()
+    {
+        canBePlaced = false;
+        placeableRight = false;
+        placeableLeft = false;
+        placeableTop = false;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
 
+        Vector3Int mousePosInt = new Vector3Int((int)Mathf.Floor(mousePos.x), (int)Mathf.Floor(mousePos.y), (int)Mathf.Floor(mousePos.z));
+
+        Vector3Int selectedCellPos = levelTiles.WorldToCell(mousePosInt);
+
+        if (levelTiles.GetTile(selectedCellPos) != null)
+        {
+            if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 1, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x, selectedCellPos.y + 2, 0)) == null)
+            {
+                Debug.Log("CAN BE PLACED TOP");
+                placeableTop = true;
+            }
+            else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x + 2, selectedCellPos.y, 0)) == null)
+            {
+                Debug.Log("CAN BE PLACED RIGHT");
+                placeableRight = true;
+            }
+            else if (levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 1, selectedCellPos.y, 0)) == null && levelTiles.GetTile(new Vector3Int(selectedCellPos.x - 2, selectedCellPos.y, 0)) == null)
+            {
+                Debug.Log("CAN BE PLACED LEFT");
+                placeableLeft = true;
+            }
+        }
+
+        if (placeableTop || placeableRight || placeableLeft)
+        {
+            canBePlaced = true;
+            ChangeColor("canPlace");
+        }
+        else
+        {
+            canBePlaced = false;
+            ChangeColor("cannotPlace");
+        }
+
+
+        if (!canBePlaced)
+        {
+            newAction.transform.position = mousePos;
+        }
+
+        else
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Debug.Log("Placed action and can be placed: " + canBePlaced);
+                placingAction = false;
+                ChangeColor("placed");
+                newActionCollider.enabled = true;
+            }
+            newAction.transform.position = levelTiles.GetCellCenterWorld(selectedCellPos);
+        }
+    }
     void ChangeColor(string type)
     {
         Color tmp = newActionRenderer.color;
