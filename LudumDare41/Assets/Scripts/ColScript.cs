@@ -24,25 +24,28 @@ public class ColScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
+			GameManagerScript.death.Play ();
             GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
         }
         if (theseColType == ColType.Legs)
         {
             switch (col.tag)
             {
-                case "Jump":
+			case "Jump":
+				GameManagerScript.active.Play ();
                    myPlayerScript.Jump();
                     break;
-                case "Sprint":
+			case "Sprint":
+				GameManagerScript.active.Play ();
                     myPlayerScript.Sprint();
                     break;
-                case "Crouch":
+			case "Crouch":
+				GameManagerScript.active.Play ();
                     myPlayerScript.Crouch();
                     break;
-                case "Reverse":
+			case "Reverse":
+				GameManagerScript.active.Play ();
                     myPlayerScript.Reverse();
-                  
-
                     break;      
             }
         }
@@ -50,12 +53,14 @@ public class ColScript : MonoBehaviour {
 		{
 			if(col.gameObject.tag == "WallJump")
 			{
+				GameManagerScript.active.Play ();
 				myPlayerScript.WallJump();
 			}
 		}
 
 		if (col.gameObject.tag == "Coin") 
 		{
+			GameManagerScript.coin.Play ();
 			GameManagerScript.PlayerMoney += GameManagerScript.moneyFromCoin;
 
 			Destroy (col.gameObject);

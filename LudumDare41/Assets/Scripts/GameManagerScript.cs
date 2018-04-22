@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript current;
+	public static AudioSource active, shop, coin, death;
     public static float PlayerMoney, totalRuns;
     public static playerScript player;
     public static List<enemyScript> enemies;
@@ -101,6 +102,14 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
+	public static void LoadLevelFunctionAwake(AudioSource _shop, AudioSource _coin, AudioSource _active, AudioSource _death)
+	{
+		shop = _shop;
+		coin = _coin;
+		active = _active;
+		death = _death;
+	}
+
     public static void LoadLevelFunction(playerScript _player, List<enemyScript> _enemies)
     {
         player = _player;
@@ -108,10 +117,8 @@ public class GameManagerScript : MonoBehaviour
     }
     public  void PlayerDeath()
     {
-        
+		death.Play ();
         ChangePlayerState(GameState.Dead);
-
-
     }
     public void RespawnPlayer()
     {

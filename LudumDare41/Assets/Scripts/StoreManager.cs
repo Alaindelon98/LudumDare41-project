@@ -100,6 +100,7 @@ public class StoreManager : MonoBehaviour {
         }
         if (placingAction)
         {
+			GameManagerScript.shop.Play ();
             newActionType = type;
         }
     }
