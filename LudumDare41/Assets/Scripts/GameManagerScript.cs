@@ -129,6 +129,7 @@ public class GameManagerScript : MonoBehaviour
 		{
 			coin.SetActive (true);
 		}
+		takenCoins.Clear ();
         foreach (enemyScript e in enemies)
         {
             e.ResetEnemy();
