@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour
     public static playerScript player;
     public static List<enemyScript> enemies;
     public static List<Transform> actions;
+	public static List<GameObject> takenCoins;
     public float sumMoneyDistance;
     public float RespawnTime;
     public static float sumMoneyDistance_s;
@@ -23,8 +24,6 @@ public class GameManagerScript : MonoBehaviour
 
     public static float priceIncrement;
 
-
-
     public enum GameState { Dead, OnRun };
     public static GameState actualGameState;
 
@@ -36,7 +35,7 @@ public class GameManagerScript : MonoBehaviour
         actualGameState = GameState.OnRun;
         enemies = new List<enemyScript>();
         actions = new List<Transform>();
-
+		takenCoins = new List<GameObject> ();
 		moneyFromCoin = initialCoinValue;
     }
 
@@ -81,11 +80,7 @@ public class GameManagerScript : MonoBehaviour
 
     public static void GetPlayerDistance()
     {
-
-
         float newDistance = Mathf.Abs(player.transform.position.x - player.spawnPosition.x);
-
-
 
         if (totalPlayerDistance < newDistance)
         {
@@ -99,7 +94,6 @@ public class GameManagerScript : MonoBehaviour
                 playerDistanceCounter = 0;
             }
         }
-
     }
 
 	public static void LoadLevelFunctionAwake(AudioSource _shop, AudioSource _coin, AudioSource _active, AudioSource _death)
@@ -131,10 +125,12 @@ public class GameManagerScript : MonoBehaviour
 			player.transform.localScale = scale;
 		}
         totalRuns++;
-        Debug.Log(enemies.Count);
+		foreach (GameObject coin in takenCoins) 
+		{
+			coin.SetActive (true);
+		}
         foreach (enemyScript e in enemies)
         {
-           
             e.ResetEnemy();
         }
 

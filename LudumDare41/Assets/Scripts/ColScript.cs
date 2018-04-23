@@ -62,8 +62,9 @@ public class ColScript : MonoBehaviour {
 		{
 			GameManagerScript.coin.Play ();
 			GameManagerScript.PlayerMoney += GameManagerScript.moneyFromCoin;
-
-			Destroy (col.gameObject);
+			GameManagerScript.takenCoins.Add (col.gameObject);
+			col.gameObject.SetActive (false);
+			//Destroy (col.gameObject);
 		}
 
     }
