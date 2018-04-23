@@ -147,6 +147,18 @@ public class StoreManager : MonoBehaviour {
             {
                 placeableTop = true;
             }
+
+            foreach (Transform a in GameManagerScript.actions)
+            { 
+                if (a.position == levelTiles.GetCellCenterWorld(selectedCellPos))
+                {
+                    Debug.Log("Position already used");
+                    placeableRight = false;
+                    placeableLeft = false;
+                    placeableTop = false;
+                    break;
+                }
+            }
         }
 
         //Debug.Log("Action type"+ newActionType);
