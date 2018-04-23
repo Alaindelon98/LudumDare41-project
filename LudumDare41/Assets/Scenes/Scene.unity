@@ -14563,6 +14563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494631625}
   - component: {fileID: 494631624}
+  - component: {fileID: 494631626}
   m_Layer: 0
   m_Name: castillo_0
   m_TagString: Untagged
@@ -14627,6 +14628,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &494631626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494631623}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.28, y: 3.26}
+    newSize: {x: 3.28, y: 3.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.28, y: 3.26}
+  m_EdgeRadius: 0
 --- !u!1001 &515280461
 Prefab:
   m_ObjectHideFlags: 0
@@ -15152,6 +15178,26 @@ Prefab:
     - target: {fileID: 1076345196018264, guid: 18502c4a973146f4f9176b38fc0b50dd, type: 2}
       propertyPath: m_Name
       value: PlayerPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 114381129515396418, guid: 18502c4a973146f4f9176b38fc0b50dd,
+        type: 2}
+      propertyPath: blood
+      value: 
+      objectReference: {fileID: 1025080483}
+    - target: {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd,
+        type: 2}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd,
+        type: 2}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd,
+        type: 2}
+      propertyPath: randomSeed
+      value: 312997948
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18502c4a973146f4f9176b38fc0b50dd, type: 2}
@@ -15954,6 +16000,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4784058027775572, guid: 08c283f7ff1e94745bdc8b381ba093fd,
     type: 2}
   m_PrefabInternal: {fileID: 1000966638}
+--- !u!198 &1025080483 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd,
+    type: 2}
+  m_PrefabInternal: {fileID: 706250914}
 --- !u!1 &1106754894
 GameObject:
   m_ObjectHideFlags: 0
