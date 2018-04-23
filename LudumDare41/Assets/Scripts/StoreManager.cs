@@ -16,11 +16,13 @@ public class StoreManager : MonoBehaviour {
 
     private SpriteRenderer newActionRenderer;
     private BoxCollider2D newActionCollider;
+    private CircleCollider2D newActionCircleCollider;
     private GameObject newAction;
     private string newActionType;
 
     public int initialJumpPrice, initialSprintPrice, initialCrouchPrice, initialReversePrice, initialWallJumpPrice;
 
+    private int jumpCounter, sprintCounter, reverseCounter, wallJumpCounter;
     public float initialPriceIncrement;
 
 
@@ -54,6 +56,7 @@ public class StoreManager : MonoBehaviour {
         }
 	}
 
+
     public void SelectAction(string type)
     {
         switch (type)
@@ -62,7 +65,6 @@ public class StoreManager : MonoBehaviour {
                 if (GameManagerScript.PlayerMoney >= GameManagerScript.jumpPrice)
                 {
                     BuyAction(JumpPrefab);
-                    GameManagerScript.PlayerMoney -= GameManagerScript.jumpPrice;
                 }
                 break;
 
@@ -70,7 +72,6 @@ public class StoreManager : MonoBehaviour {
                 if (GameManagerScript.PlayerMoney >= GameManagerScript.sprintPrice)
                 {
                     BuyAction(SprintPrefab);
-                    GameManagerScript.PlayerMoney -= GameManagerScript.sprintPrice;
                 }
                 break;
 
@@ -86,7 +87,6 @@ public class StoreManager : MonoBehaviour {
                 if (GameManagerScript.PlayerMoney >= GameManagerScript.reversePrice)
                 {
                     BuyAction(ReversePrefab);
-                    GameManagerScript.PlayerMoney -= GameManagerScript.reversePrice;
                 }
                 break;
 
@@ -94,13 +94,11 @@ public class StoreManager : MonoBehaviour {
                 if (GameManagerScript.PlayerMoney >= GameManagerScript.wallJumpPrice)
                 {
                     BuyAction(WallJumpPrefab);
-                    GameManagerScript.PlayerMoney -= GameManagerScript.wallJumpPrice;
                 }
                 break;
         }
         if (placingAction)
         {
-			GameManagerScript.shop.Play ();
             newActionType = type;
         }
     }
@@ -112,8 +110,11 @@ public class StoreManager : MonoBehaviour {
             newAction = Instantiate(prefab, mousePos, Quaternion.identity);
             newActionRenderer = newAction.GetComponent<SpriteRenderer>();
             newActionCollider = newAction.GetComponent<BoxCollider2D>();
+            newActionCircleCollider = newAction.GetComponent<CircleCollider2D>();
 
             newActionCollider.enabled = false;
+            newActionCircleCollider.enabled = false;
+
             canBePlaced = false;
 
             placingAction = true;
@@ -212,6 +213,20 @@ public class StoreManager : MonoBehaviour {
         if (!canBePlaced)
         {
             newAction.transform.position = mousePos;
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Destroy(newAction);
+                newAction = null;
+                newActionCollider = null;
+                newActionRenderer = null;
+                newActionType = null;
+                newActionCircleCollider = null;
+
+
+                placingAction = false;
+
+            }
         }
 
         else
@@ -224,6 +239,9 @@ public class StoreManager : MonoBehaviour {
                 placingAction = false;
                 ChangeColor("placed");
                 newActionCollider.enabled = true;
+                newActionCircleCollider.enabled = true;
+
+                GameManagerScript.shop.Play();
 
                 GameManagerScript.actions.Add(newAction.transform);
                 float typeCounter = 0;
@@ -238,27 +256,37 @@ public class StoreManager : MonoBehaviour {
                 switch(newActionType)
                 {
                     case "Jump":
+                        GameManagerScript.PlayerMoney -= GameManagerScript.jumpPrice;
+
                         GameManagerScript.jumpPrice = Mathf.Round(initialJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        Debug.Log("Jump price: "+GameManagerScript.jumpPrice);
+                        //Debug.Log("Jump price: "+GameManagerScript.jumpPrice);
                         break;
 
                     case "Reverse":
+                        GameManagerScript.PlayerMoney -= GameManagerScript.reversePrice;
+
                         GameManagerScript.reversePrice = Mathf.Round(initialReversePrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        Debug.Log(GameManagerScript.reversePrice);
+                        //Debug.Log(GameManagerScript.reversePrice);
                         break;
 
                     case "WallJump":
+                        GameManagerScript.PlayerMoney -= GameManagerScript.wallJumpPrice;
+
                         GameManagerScript.wallJumpPrice = Mathf.Round(initialWallJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        Debug.Log(GameManagerScript.wallJumpPrice);
+                        //Debug.Log(GameManagerScript.wallJumpPrice);
                         break;
 
                     case "Sprint":
+                        GameManagerScript.PlayerMoney -= GameManagerScript.sprintPrice;
+
                         GameManagerScript.sprintPrice = Mathf.Round(initialSprintPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        Debug.Log(GameManagerScript.sprintPrice);
+                        //Debug.Log(GameManagerScript.sprintPrice);
                         break;
                 }
                 newAction = null;
                 newActionCollider = null;
+                newActionCircleCollider = null;
+
                 newActionRenderer = null;
                 newActionType = null;
             }

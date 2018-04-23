@@ -24,8 +24,10 @@ public class ColScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
-			GameManagerScript.death.Play ();
+            Instantiate(myPlayerScript.blood.gameObject, transform);
+            GameManagerScript.death.Play ();
             GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
+           
         }
         if (theseColType == ColType.Legs)
         {
