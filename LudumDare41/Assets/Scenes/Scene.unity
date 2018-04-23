@@ -19472,6 +19472,7 @@ MonoBehaviour:
   shop: {fileID: 1128368021}
   coin: {fileID: 112502579}
   death: {fileID: 941457781}
+  win: {fileID: 941457781}
   player: {fileID: 322748670}
   enemies:
   - {fileID: 352570742}
