@@ -117,7 +117,7 @@ public class GameManagerScript : MonoBehaviour
     public void RespawnPlayer()
     {
 		player.direction = player.initialDirection;
-		player.speedDecrease = player.initialSpeed;
+		player.speed = player.initialSpeed;
 		if (player.transform.localScale.x < 0) 
 		{
 			Vector3 scale = player.transform.localScale;
