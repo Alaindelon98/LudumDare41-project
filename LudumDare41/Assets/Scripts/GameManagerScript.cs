@@ -66,6 +66,7 @@ public class GameManagerScript : MonoBehaviour
             case GameState.Dead:
                 player.gameObject.SetActive(false);
                 moneyLastRun = theseRunMoney;
+                theseRunMoney = 0;
                 playerDistanceCounter = 0;
                 totalGamePlayerDistance = totalPlayerDistance;
                 totalPlayerDistance = 0;

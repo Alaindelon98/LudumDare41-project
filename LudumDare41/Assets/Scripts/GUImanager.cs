@@ -9,6 +9,7 @@ public class GUImanager : MonoBehaviour {
     public Text MoneyCounter;
     public Text totalRuns, actualDistance, MaxDist, moneyLastRun;
     public Text jumpPrice, sprintPrice, reversePrice, wallJumpPrice;
+    public GameObject winPanel;
 
 	// Use this for initialization
 	void Start ()
@@ -23,7 +24,7 @@ public class GUImanager : MonoBehaviour {
 
         totalRuns.text = "Generations : " + GameManagerScript.totalRuns.ToString();
 
-        actualDistance.text  ="Actual Distance : "+ Mathf.FloorToInt (GameManagerScript.totalPlayerDistance);
+        actualDistance.text  ="Current Distance : "+ Mathf.FloorToInt (GameManagerScript.totalPlayerDistance);
         MaxDist.text = "Total Distance : " + +Mathf.FloorToInt(GameManagerScript.totalGamePlayerDistance);
 
         moneyLastRun.text = "Last Run Money :"+GameManagerScript.moneyLastRun;
@@ -39,5 +40,12 @@ public class GUImanager : MonoBehaviour {
     public void ChangeCameraLook(bool lockonPlayer)
     {
         GameManagerScript.mainCamera.lockOnPlayer = lockonPlayer;
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Player")
+        {
+            winPanel.SetActive(true);
+        }
     }
 }
