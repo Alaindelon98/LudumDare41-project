@@ -55,8 +55,6 @@ public class enemyScript : MonoBehaviour
 	}
     public void ResetEnemy()
     {
-        Debug.Log("Hola");
-        
         direction = originalDirection;
         transform.position = originalPos;
         sprite.flipX = originalOrientation;
