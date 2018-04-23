@@ -177,6 +177,24 @@ public class StoreManager : MonoBehaviour {
                 {
                     canBePlaced = true;
                     ChangeColor("canPlace");
+
+                    if (placeableRight)
+                    {
+                        Vector3 theScale = newAction.transform.localScale;
+
+                        theScale.x = -1;
+
+                        newAction.transform.localScale = theScale;
+                    }
+
+                    else if (placeableLeft)
+                    {
+                        Vector3 theScale = newAction.transform.localScale;
+
+                        theScale.x = 1;
+
+                        newAction.transform.localScale = theScale;
+                    }
                 }
                 else
                 {
@@ -194,12 +212,30 @@ public class StoreManager : MonoBehaviour {
             {
                 canBePlaced = false;
                 ChangeColor("cannotPlace");
+                
             }
 
             else
             {
                 canBePlaced = true;
                 ChangeColor("canPlace");
+                if (placeableRight)
+                {
+                    Vector3 theScale = newAction.transform.localScale;
+
+                    theScale.x = -1;
+
+                    newAction.transform.localScale = theScale;
+                }
+
+                else if (placeableLeft)
+                {
+                    Vector3 theScale = newAction.transform.localScale;
+
+                    theScale.x = 1;
+
+                    newAction.transform.localScale = theScale;
+                }
             }
         }
 
@@ -241,48 +277,13 @@ public class StoreManager : MonoBehaviour {
                 newActionCollider.enabled = true;
                 newActionCircleCollider.enabled = true;
 
+                
                 GameManagerScript.shop.Play();
 
                 GameManagerScript.actions.Add(newAction.transform);
-                float typeCounter = 0;
-                foreach (Transform a in GameManagerScript.actions)
-                {
-                    if(a.tag == newActionType)
-                    {
-                        typeCounter++;
-                    }
-                }
 
-                switch(newActionType)
-                {
-                    case "Jump":
-                        GameManagerScript.PlayerMoney -= GameManagerScript.jumpPrice;
-
-                        GameManagerScript.jumpPrice = Mathf.Round(initialJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        //Debug.Log("Jump price: "+GameManagerScript.jumpPrice);
-                        break;
-
-                    case "Reverse":
-                        GameManagerScript.PlayerMoney -= GameManagerScript.reversePrice;
-
-                        GameManagerScript.reversePrice = Mathf.Round(initialReversePrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        //Debug.Log(GameManagerScript.reversePrice);
-                        break;
-
-                    case "WallJump":
-                        GameManagerScript.PlayerMoney -= GameManagerScript.wallJumpPrice;
-
-                        GameManagerScript.wallJumpPrice = Mathf.Round(initialWallJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        //Debug.Log(GameManagerScript.wallJumpPrice);
-                        break;
-
-                    case "Sprint":
-                        GameManagerScript.PlayerMoney -= GameManagerScript.sprintPrice;
-
-                        GameManagerScript.sprintPrice = Mathf.Round(initialSprintPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
-                        //Debug.Log(GameManagerScript.sprintPrice);
-                        break;
-                }
+                CalculatePrice(newActionType, true);
+                
                 newAction = null;
                 newActionCollider = null;
                 newActionCircleCollider = null;
@@ -293,6 +294,58 @@ public class StoreManager : MonoBehaviour {
         }
     }
 
+    void CalculatePrice(string type, bool takeMoney)
+    {
+        float typeCounter = 0;
+        foreach (Transform a in GameManagerScript.actions)
+        {
+            if (a.tag == newActionType)
+            {
+                typeCounter++;
+            }
+        }
+
+        switch (newActionType)
+        {
+            case "Jump":
+                if(takeMoney)
+                GameManagerScript.PlayerMoney -= GameManagerScript.jumpPrice;
+
+                GameManagerScript.jumpPrice = Mathf.Round(initialJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                //Debug.Log("Jump price: "+GameManagerScript.jumpPrice);
+                break;
+
+            case "Reverse":
+
+                if (takeMoney)
+
+                    GameManagerScript.PlayerMoney -= GameManagerScript.reversePrice;
+
+                GameManagerScript.reversePrice = Mathf.Round(initialReversePrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                //Debug.Log(GameManagerScript.reversePrice);
+                break;
+
+            case "WallJump":
+
+                if (takeMoney)
+
+                    GameManagerScript.PlayerMoney -= GameManagerScript.wallJumpPrice;
+
+                GameManagerScript.wallJumpPrice = Mathf.Round(initialWallJumpPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                //Debug.Log(GameManagerScript.wallJumpPrice);
+                break;
+
+            case "Sprint":
+
+                if (takeMoney)
+
+                    GameManagerScript.PlayerMoney -= GameManagerScript.sprintPrice;
+
+                GameManagerScript.sprintPrice = Mathf.Round(initialSprintPrice * Mathf.Pow(initialPriceIncrement, typeCounter));
+                //Debug.Log(GameManagerScript.sprintPrice);
+                break;
+        }
+    }
     void FindOrDelete()
     {
         if (Input.GetButtonDown("Fire2"))
@@ -309,6 +362,9 @@ public class StoreManager : MonoBehaviour {
                     if(GameManagerScript.actions.Contains(hit.collider.transform))
                     {
                         GameManagerScript.actions.Remove(hit.collider.transform);
+
+                        CalculatePrice(hit.collider.tag, false);
+
                         Destroy(hit.collider.gameObject);
                         GameManagerScript.PlayerMoney += initialSprintPrice;
                     }
