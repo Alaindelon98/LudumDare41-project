@@ -64,6 +64,10 @@ public class GameManagerScript : MonoBehaviour
         switch (newState)
         {
             case GameState.Dead:
+
+
+                Instantiate(player.blood.gameObject, player.transform.position, player.transform.rotation);
+                death.Play();
                 player.gameObject.SetActive(false);
                 moneyLastRun = theseRunMoney;
                 theseRunMoney = 0;
