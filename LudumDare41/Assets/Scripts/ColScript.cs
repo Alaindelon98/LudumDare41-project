@@ -22,6 +22,11 @@ public class ColScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if(col.gameObject.tag == "Castle")
+        {
+            GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Win);
+        }
+
         if (col.gameObject.tag == "Enemy" && myPlayerScript.gameObject.activeSelf )
         {
             

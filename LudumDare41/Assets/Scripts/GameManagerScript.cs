@@ -19,12 +19,12 @@ public class GameManagerScript : MonoBehaviour
     public static CameraScript mainCamera;
 	public static float moneyFromCoin;
 	public float initialCoinValue;
-
+    public static GameObject WinPanel;
     public static float jumpPrice, sprintPrice, crouchPrice, reversePrice, wallJumpPrice;
 
     public static float priceIncrement;
 
-    public enum GameState { Dead, OnRun };
+    public enum GameState { Dead, OnRun ,Win};
     public static GameState actualGameState;
 
     // Use this for initialization
@@ -79,6 +79,13 @@ public class GameManagerScript : MonoBehaviour
             case GameState.OnRun:
 
                 break;
+            case GameState.Win:
+
+                WinPanel.SetActive(true);
+                win.Play();
+
+
+                break;
         }
         actualGameState = newState;
     }
@@ -101,13 +108,14 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-	public static void LoadLevelFunctionAwake(AudioSource _shop, AudioSource _coin, AudioSource _active, AudioSource _death, AudioSource _win)
+	public static void LoadLevelFunctionAwake(AudioSource _shop, AudioSource _coin, AudioSource _active, AudioSource _death, AudioSource _win,GameObject _winPanel)
 	{
 		shop = _shop;
 		coin = _coin;
 		active = _active;
 		death = _death;
 		win = _win;
+        WinPanel = _winPanel;
 	}
 
     public static void LoadLevelFunction(playerScript _player, List<enemyScript> _enemies)

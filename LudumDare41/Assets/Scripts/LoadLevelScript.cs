@@ -7,10 +7,11 @@ public class LoadLevelScript : MonoBehaviour {
 	public AudioSource active, shop, coin, death, win;
 	public playerScript player;
 	public List<enemyScript> enemies;
+    public GameObject winPanel;
 
 	void Awake()
 	{
-		GameManagerScript.LoadLevelFunctionAwake (shop, coin, active, death, win);
+		GameManagerScript.LoadLevelFunctionAwake (shop, coin, active, death, win,winPanel);
 	}
 
 	// Use this for initialization

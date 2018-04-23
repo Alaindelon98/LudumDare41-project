@@ -15,6 +15,7 @@ TagManager:
   - Reverse
   - Limite
   - Coin
+  - Castle
   layers:
   - Default
   - TransparentFX

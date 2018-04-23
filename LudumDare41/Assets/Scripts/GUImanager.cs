@@ -41,11 +41,5 @@ public class GUImanager : MonoBehaviour {
     {
         GameManagerScript.mainCamera.lockOnPlayer = lockonPlayer;
     }
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.tag == "Player")
-        {
-            winPanel.SetActive(true);
-        }
-    }
+  
 }
