@@ -13142,8 +13142,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 42, y: 8, z: 0}
     second:
-      m_TileIndex: 18
-      m_TileSpriteIndex: 18
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -13151,8 +13151,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 43, y: 8, z: 0}
     second:
-      m_TileIndex: 18
-      m_TileSpriteIndex: 18
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -13160,8 +13160,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 44, y: 8, z: 0}
     second:
-      m_TileIndex: 18
-      m_TileSpriteIndex: 18
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -13169,8 +13169,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 45, y: 8, z: 0}
     second:
-      m_TileIndex: 18
-      m_TileSpriteIndex: 18
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -13178,8 +13178,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 46, y: 8, z: 0}
     second:
-      m_TileIndex: 18
-      m_TileSpriteIndex: 18
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -14096,9 +14096,9 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: cef5b36e28541c44e9d2ef3f7077a118, type: 2}
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: 7e0d4d880f71a9e4a9265d4788f40c37, type: 2}
-  - m_RefCount: 166
+  - m_RefCount: 161
     m_Data: {fileID: 11400000, guid: faf6df9a30c5e2242b29b5b671da30d1, type: 2}
-  - m_RefCount: 1066
+  - m_RefCount: 1071
     m_Data: {fileID: 11400000, guid: eb58a57e20fbbac4db257f3da4891716, type: 2}
   - m_RefCount: 43
     m_Data: {fileID: 11400000, guid: d601e757754004843846549fa25ba0a5, type: 2}
@@ -14147,9 +14147,9 @@ Tilemap:
     m_Data: {fileID: 21300006, guid: 96abca43794c46348af806e42584a0e7, type: 3}
   - m_RefCount: 7
     m_Data: {fileID: 21300000, guid: 96abca43794c46348af806e42584a0e7, type: 3}
-  - m_RefCount: 166
+  - m_RefCount: 161
     m_Data: {fileID: 21300002, guid: 96abca43794c46348af806e42584a0e7, type: 3}
-  - m_RefCount: 1066
+  - m_RefCount: 1071
     m_Data: {fileID: 21300008, guid: 96abca43794c46348af806e42584a0e7, type: 3}
   - m_RefCount: 43
     m_Data: {fileID: 21300010, guid: 96abca43794c46348af806e42584a0e7, type: 3}
@@ -15183,7 +15183,8 @@ Prefab:
         type: 2}
       propertyPath: blood
       value: 
-      objectReference: {fileID: 1025080483}
+      objectReference: {fileID: 198461959237087620, guid: a41a43bcce7aa4e44a9dbfde6d395381,
+        type: 2}
     - target: {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd,
         type: 2}
       propertyPath: stopAction
@@ -15199,7 +15200,9 @@ Prefab:
       propertyPath: randomSeed
       value: 312997948
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 199249177772523674, guid: 18502c4a973146f4f9176b38fc0b50dd, type: 2}
+    - {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 18502c4a973146f4f9176b38fc0b50dd, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &718144222
@@ -16000,11 +16003,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4784058027775572, guid: 08c283f7ff1e94745bdc8b381ba093fd,
     type: 2}
   m_PrefabInternal: {fileID: 1000966638}
---- !u!198 &1025080483 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198858432788741938, guid: 18502c4a973146f4f9176b38fc0b50dd,
-    type: 2}
-  m_PrefabInternal: {fileID: 706250914}
 --- !u!1 &1106754894
 GameObject:
   m_ObjectHideFlags: 0
@@ -17072,7 +17070,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.023529414, g: 0.10980393, b: 0.16862746, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

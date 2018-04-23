@@ -22,9 +22,9 @@ public class ColScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" && myPlayerScript.gameObject.activeSelf )
         {
-            Instantiate(myPlayerScript.blood.gameObject, transform);
+            Instantiate(myPlayerScript.blood.gameObject, transform.position,transform.rotation);
             GameManagerScript.death.Play ();
             GameManagerScript.ChangePlayerState(GameManagerScript.GameState.Dead);
            
