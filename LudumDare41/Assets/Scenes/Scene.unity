@@ -14334,6 +14334,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4445902491781972, guid: 7236709bca5c87b4dbe223f52bae5b2f,
     type: 2}
   m_PrefabInternal: {fileID: 171742631}
+--- !u!82 &429980982 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82380056256439988, guid: 77f646804ad79834c82804b4b4409ce7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1829731041}
 --- !u!1001 &441295210
 Prefab:
   m_ObjectHideFlags: 0
@@ -19471,7 +19476,7 @@ MonoBehaviour:
   active: {fileID: 1723029662}
   shop: {fileID: 1128368021}
   coin: {fileID: 112502579}
-  death: {fileID: 941457781}
+  death: {fileID: 429980982}
   win: {fileID: 941457781}
   player: {fileID: 322748670}
   enemies:
